@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_request"
     android:layout_width="match_parent"
@@ -9,17 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dam.serflix.Activities.RequestActivity">
-
-    <TextView
-        android:text="Date?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="18sp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Company?"
@@ -33,26 +23,74 @@
         android:textSize="18sp"
         android:fontFamily="sans-serif-smallcaps" />
 
-    <TextView
-        android:text="Time?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="38dp" />
-
-    <Spinner
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="21dp"
-        android:id="@+id/spinner2"
-        android:spinnerMode="dialog" />
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Date?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="18sp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:text="DAY/MONTH/YEAR"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/imgBtnDate"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3"
+            android:id="@+id/dateText"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_menu_today"
+            android:layout_below="@+id/textView8"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/imgBtnDate" />
+
+        <TextView
+            android:text="Time?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textSize="18sp"
+            android:layout_below="@+id/imgBtnDate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:text="HOUR:MINUTES"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/imgBtnDate"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3"
+            android:id="@+id/hourText"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_menu_recent_history"
+            android:id="@+id/imgBtnHour" />
+    </LinearLayout>
 
 </RelativeLayout>
