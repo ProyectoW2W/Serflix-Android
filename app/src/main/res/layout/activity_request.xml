@@ -33,59 +33,6 @@
         android:textSize="18sp"
         android:fontFamily="sans-serif-smallcaps" />
 
-    <RadioButton
-        android:text="Alone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton5"
-        android:textSize="12sp"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <RadioButton
-        android:text="Kids"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton4"
-        android:textSize="12sp"
-        android:layout_below="@+id/radioButton2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/radioButton5"
-        android:layout_alignEnd="@+id/radioButton5" />
-
-    <RadioButton
-        android:text="Family"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton3"
-        android:textSize="12sp"
-        android:layout_below="@+id/radioButton4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <RadioButton
-        android:text="Partner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton2"
-        android:lineSpacingExtra="12sp"
-        android:layout_below="@+id/radioButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <RadioButton
-        android:text="Homies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButton"
-        android:textSize="12sp"
-        android:layout_below="@+id/radioButton5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:text="Time?"
         android:layout_width="wrap_content"
@@ -97,5 +44,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="38dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/spinner2"
+        android:spinnerMode="dialog" />
 
 </RelativeLayout>
