@@ -1,14 +1,13 @@
-package com.example.dam.serflix;
+package com.example.dam.serflix.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static com.example.dam.serflix.R.id.sign_btn;
+import com.example.dam.serflix.R;
 
 public class LoginActivity extends AppCompatActivity {
 
