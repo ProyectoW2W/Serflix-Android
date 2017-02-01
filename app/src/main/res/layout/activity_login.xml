@@ -11,49 +11,19 @@
     tools:context="com.example.dam.serflix.LoginActivity"
     android:background="#db4437">
 
-    <Button
-        android:text="Sign"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
-
-    <Button
-        android:text="Login"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:id="@+id/button"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2" />
-
-    <TextView
-        android:text="Serflix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textSize="80dp"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/white"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/editPass"
         android:background="@android:color/white"
         android:fontFamily="sans-serif-condensed"
         android:hint="  Password"
         android:paddingLeft="15dp"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_alignStart="@+id/editEmail"
         android:paddingRight="15dp"
         android:layout_marginTop="25dp" />
 
@@ -61,14 +31,59 @@
         android:layout_height="50dp"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editEmail"
         android:background="@android:color/white"
         android:fontFamily="sans-serif-condensed"
         android:layout_width="310dp"
         android:hint="  Email"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_above="@+id/editPass"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Serflix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appText"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/white"
+        android:textSize="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:id="@+id/login_btn"
+        android:layout_below="@+id/editPass"
+        android:layout_alignLeft="@+id/editPass"
+        android:layout_alignStart="@+id/editPass" />
+
+    <TextView
+        android:text="Sign in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_btn"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/signText"
+        android:layout_alignBottom="@+id/signText"
+        android:layout_alignRight="@+id/appText"
+        android:layout_alignEnd="@+id/appText" />
+
+    <TextView
+        android:text="Not registered yet?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signText"
+        android:textSize="20sp"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/login_btn"
+        android:layout_alignLeft="@+id/login_btn"
+        android:layout_alignStart="@+id/login_btn"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp" />
+
 </RelativeLayout>
