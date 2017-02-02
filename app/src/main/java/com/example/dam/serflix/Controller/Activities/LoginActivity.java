@@ -38,11 +38,19 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         });
 
         TextView sign_btn = (TextView) findViewById(R.id.signUp_btn);
-        //sign_btn.setMovementMethod(LinkMovementMethod.getInstance());
 
         sign_btn.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button request_btn = (Button) findViewById(R.id.request_btn);
+
+        request_btn.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
                 startActivity(intent);
             }
         });

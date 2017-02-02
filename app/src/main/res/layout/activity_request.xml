@@ -15,13 +15,12 @@
         android:text="Company?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/textView3"
         android:textSize="18sp"
-        android:fontFamily="sans-serif-smallcaps" />
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -44,7 +43,7 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
-            android:text="DAY/MONTH/YEAR"
+            android:text="00/00/0000"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignBottom="@+id/imgBtnDate"
@@ -52,16 +51,9 @@
             android:layout_toEndOf="@+id/textView3"
             android:id="@+id/dateText"
             android:textAlignment="center"
-            android:textSize="30sp" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/ic_menu_today"
-            android:layout_below="@+id/textView8"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/imgBtnDate" />
+            android:textSize="30sp"
+            android:background="@color/cardview_light_background"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:text="Time?"
@@ -76,7 +68,7 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
-            android:text="HOUR:MINUTES"
+            android:text="00:00"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignBottom="@+id/imgBtnDate"
@@ -84,13 +76,18 @@
             android:layout_toEndOf="@+id/textView3"
             android:id="@+id/hourText"
             android:textAlignment="center"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:background="@color/cardview_dark_background" />
 
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/ic_menu_recent_history"
-            android:id="@+id/imgBtnHour" />
     </LinearLayout>
+
+    <Button
+        android:text="@string/dish_pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/company_btn"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

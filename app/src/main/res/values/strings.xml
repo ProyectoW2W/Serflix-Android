@@ -6,4 +6,5 @@
     <string name="editEmail">Email</string>
     <string name="editPass">Password</string>
     <string name="Titulo">Serflix</string>
+    <string name="dish_pick">Choose your company</string>
 </resources>
