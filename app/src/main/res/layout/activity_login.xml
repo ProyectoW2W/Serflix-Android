@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dam.serflix.Activities.LoginActivity"
+    tools:context=".Controller.Activities.LoginActivity"
     android:background="?android:attr/windowBackground">
 
     <EditText
@@ -19,13 +19,13 @@
         android:id="@+id/editPass"
         android:background="@android:color/white"
         android:fontFamily="sans-serif-condensed"
-        android:hint="  Password"
         android:paddingLeft="15dp"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/editEmail"
         android:layout_alignStart="@+id/editEmail"
         android:paddingRight="15dp"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp"
+        android:hint="@string/editPass" />
 
     <EditText
         android:layout_height="50dp"
@@ -35,11 +35,11 @@
         android:background="@android:color/white"
         android:fontFamily="sans-serif-condensed"
         android:layout_width="310dp"
-        android:hint="  Email"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:layout_above="@+id/editPass"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="@string/editEmail" />
 
     <TextView
         android:text="Serflix"
@@ -52,38 +52,38 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="Login"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:id="@+id/login_btn"
-        android:layout_below="@+id/editPass"
-        android:layout_alignLeft="@+id/editPass"
-        android:layout_alignStart="@+id/editPass" />
-
     <TextView
-        android:text="Sign in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sign_btn"
+        android:id="@+id/signUp_btn"
         android:textSize="20sp"
-        android:layout_alignBaseline="@+id/signText"
-        android:layout_alignBottom="@+id/signText"
+        android:layout_alignBaseline="@+id/signUpText"
+        android:layout_alignBottom="@+id/signUpText"
         android:layout_alignRight="@+id/appText"
-        android:layout_alignEnd="@+id/appText" />
+        android:layout_alignEnd="@+id/appText"
+        android:text="@string/signUpBtn" />
 
     <TextView
-        android:text="Not registered yet?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signText"
+        android:id="@+id/signUpText"
         android:textSize="20sp"
         android:layout_marginTop="11dp"
         android:layout_below="@+id/login_btn"
         android:layout_alignLeft="@+id/login_btn"
         android:layout_alignStart="@+id/login_btn"
         android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
+        android:layout_marginStart="12dp"
+        android:text="@string/SignUpText" />
+
+    <Button
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="61dp"
+        android:id="@+id/login_btn"
+        android:layout_below="@+id/editPass"
+        android:layout_alignLeft="@+id/editPass"
+        android:layout_alignStart="@+id/editPass"
+        android:text="@string/login_btn" />
 
 </RelativeLayout>

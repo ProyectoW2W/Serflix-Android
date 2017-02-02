@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Serflix</string>
+    <string name="signUpBtn">Sign Up</string>
+    <string name="SignUpText">Not registered yet?</string>
+    <string name="login_btn">Sign in</string>
+    <string name="editEmail">Email</string>
+    <string name="editPass">Password</string>
+    <string name="Titulo">Serflix</string>
 </resources>
