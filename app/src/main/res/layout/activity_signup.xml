@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app=""
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sign"
     android:layout_width="match_parent"
@@ -52,27 +53,13 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText4"
-        android:text="Password"
         android:background="@android:color/background_light"
         android:fontFamily="sans-serif-condensed"
         android:layout_below="@+id/editText3"
         android:layout_alignLeft="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
-        android:layout_marginTop="19dp" />
-
-    <EditText
-        android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_marginTop="20dp"
-        android:id="@+id/editText3"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif-condensed"
-        android:hint="  email"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_marginTop="19dp"
+        android:hint="  Password" />
 
     <EditText
         android:layout_width="310dp"
@@ -81,10 +68,24 @@
         android:ems="10"
         android:layout_marginTop="21dp"
         android:id="@+id/editText5"
-        android:text="PasswordVe"
         android:background="@android:color/background_light"
         android:fontFamily="sans-serif-condensed"
         android:layout_below="@+id/editText4"
         android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4" />
+        android:layout_alignStart="@+id/editText4"
+        android:hint="  Check" />
+
+    <EditText
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_marginTop="19dp"
+        android:id="@+id/editText3"
+        android:background="@android:color/background_light"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="  Email"
+        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2" />
 </RelativeLayout>
