@@ -31,8 +31,8 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_request);
 
         company_btn = (Button) findViewById(R.id.company_btn);
-        dateText = (TextView) findViewById(R.id.dateText);
-        hourText = (TextView) findViewById(R.id.hourText);
+        dateText = (TextView) findViewById(R.id.dateTextPicker);
+        hourText = (TextView) findViewById(R.id.hourTextPicker);
 
         company_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,10 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
         //Current Hour
         hour = c.get(Calendar.HOUR_OF_DAY);
         minute = c.get(Calendar.MINUTE);
-        hourText.setText(hour+":"+minute);
+        if(minute<10){
+            hourText.setText(hour+":0"+minute);
+        }else {
+        hourText.setText(hour+":"+minute);}
 
         //Make TextView clickable
         hourText.setOnClickListener(this);
@@ -84,7 +87,10 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    hourText.setText(hourOfDay+":"+minute);
+                    if(minute<10){
+                        hourText.setText(hourOfDay+":0"+minute);
+                    }else {
+                        hourText.setText(hourOfDay+":"+minute);}
                 }
             },hour, minute,false);
             timePickerDialog.show();
