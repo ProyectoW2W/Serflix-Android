@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dish_pick">Escoge la compañia</string>
+    <string name="editEmail">Correo</string>
+    <string name="editPass">Contraseña</string>
+    <string name="login_btn">Entrar</string>
+    <string name="signUpBtn">Registrate</string>
+    <string name="textCompany">Compañia?</string>
+    <string name="textDate">Fecha?</string>
+    <string name="textTime">Hora?</string>
+    <string name="SignUpText">No estas registrado?</string>
+    <string name="editPasswordCheck">Repetir contraseña</string>
+    <string name="editName">Nombre</string>
+</resources>

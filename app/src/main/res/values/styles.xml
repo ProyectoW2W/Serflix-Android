@@ -9,5 +9,7 @@
         <item name="colorPrimaryDark">@color/background_material_dark</item>
     </style>
 
+    <style name="company_btn">Choose your company</style>
+
 
 </resources>

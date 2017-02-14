@@ -12,7 +12,7 @@
     tools:context=".Controller.Activities.RequestActivity">
 
     <TextView
-        android:text="Company?"
+        android:text="@string/textCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -29,7 +29,8 @@
         android:id="@+id/company_btn"
         android:layout_marginTop="53dp"
         android:layout_below="@+id/textCompany"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        style="@style/company_btn" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -41,7 +42,7 @@
         android:layout_marginBottom="117dp">
 
         <TextView
-            android:text="Date?"
+            android:text="@string/textDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textDate"
@@ -65,7 +66,7 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
-            android:text="Time?"
+            android:text="@string/textTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textTime"

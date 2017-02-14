@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">Serflix</string>
+    <string name="app_name" translatable="false">Serflix</string>
     <string name="signUpBtn">Sign Up</string>
     <string name="SignUpText">Not registered yet?</string>
-    <string name="login_btn">Sign in</string>
+    <string name="login_btn">Sign In</string>
     <string name="editEmail">Email</string>
     <string name="editPass">Password</string>
-    <string name="Titulo">Serflix</string>
+    <string name="Titulo" translatable="false">Serflix</string>
     <string name="dish_pick">Choose your company</string>
+    <string name="textCompany">Company?</string>
+    <string name="textDate">Date?</string>
+    <string name="textTime">Time?</string>
+    <string name="editName">Name</string>
+    <string name="editPasswordCheck">Repeat password</string>
 </resources>
