@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Managers.LoginCallback;
 import com.example.dam.serflix.Controller.Managers.UserLoginManager;
@@ -59,15 +60,16 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     private void attemptLogin() {
         String usu = username.getText().toString();
         String password = pass.getText().toString();
-        //usu = "admin";
-        //password = "admin";
+        usu = "admin";
+        password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
     }
 
 
     @Override
     public void onSuccess(UserToken userToken) {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
+        Toast.makeText(this, "Correcto! Iniciando sesion", Toast.LENGTH_LONG).show();
         startActivity(intent);
         finish();
     }
@@ -75,5 +77,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     @Override
     public void onFailure(Throwable t) {
         Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
+        Toast.makeText(this, "Credenciales incorectos", Toast.LENGTH_LONG).show();
     }
 }

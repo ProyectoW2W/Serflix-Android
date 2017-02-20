@@ -9,28 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Controller.Activities.RequestActivity">
-
-    <TextView
-        android:text="@string/textCompany"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textCompany"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="@string/dish_pick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/company_btn"
-        android:layout_marginTop="53dp"
-        android:layout_below="@+id/textCompany"
-        android:layout_centerHorizontal="true"
-        style="@style/company_btn" />
+    tools:context=".Controller.Activities.RequestActivity"
+    android:background="@android:color/background_light">
 
     <LinearLayout
         android:orientation="vertical"
@@ -41,17 +21,15 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="117dp">
 
-        <TextView
-            android:text="@string/textDate"
+        <Button
+            android:text="@string/dish_pick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textDate"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textSize="18sp"
+            android:id="@+id/company_btn"
+            android:layout_marginTop="53dp"
             android:layout_below="@+id/textCompany"
-            android:layout_alignRight="@+id/textCompany"
-            android:layout_alignEnd="@+id/textCompany"
-            android:layout_marginBottom="10dp" />
+            android:layout_centerHorizontal="true"
+            style="@style/company_btn" />
 
         <TextView
             android:text="00/00/0000"
@@ -66,18 +44,6 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
-            android:text="@string/textTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textTime"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textSize="18sp"
-            android:layout_below="@+id/imgBtnDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp" />
-
-        <TextView
             android:text="00:00"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,6 +53,18 @@
             android:id="@+id/hourTextPicker"
             android:textAlignment="center"
             android:textSize="45sp" />
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.example.dam.serflix.Controller.DatePickerView"
+            android:id="@+id/datePickerView" />
+
+        <view
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.example.dam.serflix.Controller.TimePickerView"
+            android:id="@+id/timePickerView" />
 
     </LinearLayout>
 

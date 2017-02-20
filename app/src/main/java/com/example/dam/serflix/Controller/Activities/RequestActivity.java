@@ -1,23 +1,20 @@
 package com.example.dam.serflix.Controller.Activities;
 
 import android.app.DatePickerDialog;
-import java.util.Calendar;
-
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.dam.serflix.R;
 
-public class RequestActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Calendar;
+
+public class RequestActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     private static final String DIALOG_COMPANY = "RequestActivity.CompanyDialogClass";
     private Button company_btn;
@@ -65,6 +62,7 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
+
     @Override
     public void onClick(View v) {
         if (v == dateText){
@@ -95,5 +93,20 @@ public class RequestActivity extends AppCompatActivity implements View.OnClickLi
             },hour, minute,false);
             timePickerDialog.show();
         }
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        final Calendar c = Calendar.getInstance();
+        day = c.get(Calendar.DAY_OF_MONTH);
+        month = c.get(Calendar.MONTH);
+        year = c.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                dateText.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+            }
+        },day, month, year);
+        datePickerDialog.show();
     }
 }

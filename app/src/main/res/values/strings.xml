@@ -12,4 +12,6 @@
     <string name="textTime">Time?</string>
     <string name="editName">Name</string>
     <string name="editPasswordCheck">Repeat password</string>
+    <string name="timePickerView">What time?</string>
+    <string name="datePickerView">Which day?</string>
 </resources>
