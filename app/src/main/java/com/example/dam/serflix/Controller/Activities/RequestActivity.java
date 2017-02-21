@@ -14,8 +14,6 @@ import com.example.dam.serflix.R;
 import java.util.Date;
 
 public class RequestActivity extends AppCompatActivity{
-
-    private static final String DIALOG_COMPANY = "RequestActivity.CompanyDialogClass";
     private Button sendRequestButton;
 
     Spinner companySpinner;
@@ -47,6 +45,10 @@ public class RequestActivity extends AppCompatActivity{
                 System.out.println("Company: "+companySpinner.getSelectedItem());
                 System.out.println("Day: "+datePickerView.getDate());
                 System.out.println("Time: "+timePickerView.getTime());
+
+                //Enviar request
+
+                //Pasar a recommendationActivity
             }
         });
     }

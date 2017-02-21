@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".Controller.Activities.RequestActivity" />
         <activity android:name=".Controller.Activities.SignUpActivity" />
-        <activity android:name=".Controller.Activities.MainActivity" ></activity>
+        <activity android:name=".Controller.Activities.MainActivity" />
+        <activity android:name=".Controller.Activities.RecommendationActivity"></activity>
     </application>
 
 </manifest>
