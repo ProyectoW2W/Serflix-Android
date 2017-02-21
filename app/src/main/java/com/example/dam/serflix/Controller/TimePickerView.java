@@ -13,6 +13,7 @@ import com.example.dam.serflix.R;
 
 import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimePickerView extends EditText implements TimePickerDialog.OnTimeSetListener{
     private Time time;
@@ -35,12 +36,11 @@ public class TimePickerView extends EditText implements TimePickerDialog.OnTimeS
 
 
     private void setAttributes() {
-
         setHint(R.string.timePickerView);
         setGravity(Gravity.LEFT | Gravity.CENTER);
         setFocusable(false);
-        // setTextSize(18);
-        //  setPadding(10, 10, 10, 10);
+        setTextSize(25);
+        setGravity(Gravity.CENTER);
 
         setOnClickListener(new OnClickListener() {
             @Override
@@ -55,7 +55,6 @@ public class TimePickerView extends EditText implements TimePickerDialog.OnTimeS
                         calendar.get(Calendar.MINUTE),
                         false
                 );
-
                 // datePicker.setCanceledOnTouchOutside(true);
                 timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "CANCEL", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -72,7 +71,21 @@ public class TimePickerView extends EditText implements TimePickerDialog.OnTimeS
     }
 
     @Override
-    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+        setTime(new Time(hourOfDay, minute, 0));
+
+    }
+    public void setTime(Time time) {
+        if (time != null) {
+            this.time = time;
+            setText(time.toString().substring(0, time.toString().length()-3));
+        } else {
+            setText("");
+        }
+    }
+
+    public Date getTime() {
+        return time;
     }
 }

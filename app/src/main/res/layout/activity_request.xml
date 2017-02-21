@@ -16,49 +16,26 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="117dp">
+        android:gravity="center_vertical"
+        android:layout_above="@+id/sendRequestButton"
+        android:layout_below="@+id/textView">
 
-        <Button
-            android:text="@string/dish_pick"
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/company_btn"
-            android:layout_marginTop="53dp"
-            android:layout_below="@+id/textCompany"
-            android:layout_centerHorizontal="true"
-            style="@style/company_btn" />
-
-        <TextView
-            android:text="00/00/0000"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imgBtnDate"
-            android:layout_toRightOf="@+id/textCompany"
-            android:layout_toEndOf="@+id/textCompany"
-            android:id="@+id/dateTextPicker"
+            android:id="@+id/companySpinner"
+            android:popupBackground="@color/cardview_light_background"
             android:textAlignment="center"
-            android:textSize="45sp"
-            android:layout_marginBottom="10dp" />
-
-        <TextView
-            android:text="00:00"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imgBtnDate"
-            android:layout_toRightOf="@+id/textCompany"
-            android:layout_toEndOf="@+id/textCompany"
-            android:id="@+id/hourTextPicker"
-            android:textAlignment="center"
-            android:textSize="45sp" />
+            android:layout_marginBottom="20dp" />
 
         <view
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             class="com.example.dam.serflix.Controller.DatePickerView"
-            android:id="@+id/datePickerView" />
+            android:id="@+id/datePickerView"
+            android:layout_marginBottom="20dp" />
 
         <view
             android:layout_width="match_parent"
@@ -67,5 +44,30 @@
             android:id="@+id/timePickerView" />
 
     </LinearLayout>
+
+    <Button
+        android:text="@string/getRecommendations"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/sendRequestButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="60dp"
+        android:background="?attr/colorPrimaryDark"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:text="@string/Titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView"
+        android:textSize="60sp"
+        android:textAlignment="center"
+        android:textColor="?android:attr/colorPrimaryDark"
+        android:textStyle="normal|bold" />
 
 </RelativeLayout>

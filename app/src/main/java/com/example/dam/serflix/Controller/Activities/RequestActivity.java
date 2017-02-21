@@ -1,112 +1,53 @@
 package com.example.dam.serflix.Controller.Activities;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Spinner;
 
+import com.example.dam.serflix.Controller.DatePickerView;
+import com.example.dam.serflix.Controller.TimePickerView;
 import com.example.dam.serflix.R;
 
-import java.util.Calendar;
+import java.util.Date;
 
-public class RequestActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
+public class RequestActivity extends AppCompatActivity{
 
     private static final String DIALOG_COMPANY = "RequestActivity.CompanyDialogClass";
-    private Button company_btn;
+    private Button sendRequestButton;
 
-    TextView dateText, hourText;
-    private int day, month, year, hour, minute;
+    Spinner companySpinner;
+    TimePickerView timePickerView;
+    DatePickerView datePickerView;
+    Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
 
-        company_btn = (Button) findViewById(R.id.company_btn);
-        dateText = (TextView) findViewById(R.id.dateTextPicker);
-        hourText = (TextView) findViewById(R.id.hourTextPicker);
+        datePickerView = (DatePickerView) findViewById(R.id.datePickerView);
+        timePickerView = (TimePickerView) findViewById(R.id.timePickerView);
+        companySpinner = (Spinner) findViewById(R.id.companySpinner);
+        sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
-        company_btn.setOnClickListener(new View.OnClickListener() {
+        //Establecer valores Company Spinner
+        Spinner spinner = (Spinner) findViewById(R.id.companySpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.company_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        //Listeners
+        sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                CompanyDialogClass dialogClass = new CompanyDialogClass();
-                dialogClass.show(getSupportFragmentManager(), DIALOG_COMPANY);
+            public void onClick(View view) {
+                System.out.println("Company: "+companySpinner.getSelectedItem());
+                System.out.println("Day: "+datePickerView.getDate());
+                System.out.println("Time: "+timePickerView.getTime());
             }
         });
-
-        //Create a Calendar
-        final Calendar c = Calendar.getInstance();
-
-        //Current Date
-        day = c.get(Calendar.DAY_OF_MONTH);
-        month = c.get(Calendar.MONTH);
-        year = c.get(Calendar.YEAR);
-        dateText.setText(day+"/"+(month+1)+"/"+year);
-
-        //Current Hour
-        hour = c.get(Calendar.HOUR_OF_DAY);
-        minute = c.get(Calendar.MINUTE);
-        if(minute<10){
-            hourText.setText(hour+":0"+minute);
-        }else {
-        hourText.setText(hour+":"+minute);}
-
-        //Make TextView clickable
-        hourText.setOnClickListener(this);
-        dateText.setOnClickListener(this);
-    }
-
-
-
-    @Override
-    public void onClick(View v) {
-        if (v == dateText){
-            final Calendar c = Calendar.getInstance();
-            day = c.get(Calendar.DAY_OF_MONTH);
-            month = c.get(Calendar.MONTH);
-            year = c.get(Calendar.YEAR);
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    dateText.setText(dayOfMonth+"/"+(month+1)+"/"+year);
-                }
-            },day, month, year);
-            datePickerDialog.show();
-        }
-        if (v == hourText){
-            final Calendar c = Calendar.getInstance();
-            hour = c.get(Calendar.HOUR_OF_DAY);
-            minute = c.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    if(minute<10){
-                        hourText.setText(hourOfDay+":0"+minute);
-                    }else {
-                        hourText.setText(hourOfDay+":"+minute);}
-                }
-            },hour, minute,false);
-            timePickerDialog.show();
-        }
-    }
-
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        final Calendar c = Calendar.getInstance();
-        day = c.get(Calendar.DAY_OF_MONTH);
-        month = c.get(Calendar.MONTH);
-        year = c.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                dateText.setText(dayOfMonth+"/"+(month+1)+"/"+year);
-            }
-        },day, month, year);
-        datePickerDialog.show();
     }
 }
