@@ -24,7 +24,7 @@
 
             <ImageView
                 app:srcCompat="@drawable/pruebaposter"
-                android:id="@+id/imageView"
+                android:id="@+id/poster"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp" />
 
@@ -61,7 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/cast"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:textColor="@android:color/darker_gray" />
 
                 <TextView
                     android:text="A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early."
@@ -75,7 +76,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tags"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:textColor="@android:color/darker_gray" />
             </LinearLayout>
 
         </LinearLayout>
