@@ -8,6 +8,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dam.serflix.Controller.Activities.RecommendationActivity">
+    tools:context="com.example.dam.serflix.Controller.Activities.RecommendationActivity"
+    android:background="?attr/colorPrimaryDark">
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="com.example.dam.serflix.Controller.MovieCard"
+        android:id="@+id/view"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

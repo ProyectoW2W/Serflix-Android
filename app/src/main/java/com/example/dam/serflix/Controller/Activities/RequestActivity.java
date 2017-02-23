@@ -1,5 +1,6 @@
 package com.example.dam.serflix.Controller.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,6 +50,8 @@ public class RequestActivity extends AppCompatActivity{
                 //Enviar request
 
                 //Pasar a recommendationActivity
+                Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
+                startActivity(intent);
             }
         });
     }
