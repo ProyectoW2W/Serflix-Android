@@ -51,7 +51,7 @@ public class MovieCard extends LinearLayout {
 
         Movie m = new Movie();
         m.setCast("Jennifer Lawrence, Chris Pratt, Morten Tyldum, Jon Spaihts");
-        m.setDescription("A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early.3");
+        m.setDescription("A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early.");
         m.setTags("Adventure, Drama, Romance, Science Fiction, isolation, spaceship, space");
         m.setTitle("Passengers");
         m.setYear("2016");
