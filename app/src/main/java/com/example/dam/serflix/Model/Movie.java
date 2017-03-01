@@ -55,7 +55,8 @@ public class Movie {
         return cast;
     }
 
-    public void setCast(String cast) {
+    public void
+    setCast(String cast) {
         this.cast = cast;
     }
 

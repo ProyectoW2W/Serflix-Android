@@ -14,6 +14,7 @@ import retrofit2.Response;
 
 public class UserLoginManager {
     private static UserLoginManager ourInstance;
+    private static RequestManager requestManager;
     private UserToken userToken;
     private Context context;
     private String bearerToken;

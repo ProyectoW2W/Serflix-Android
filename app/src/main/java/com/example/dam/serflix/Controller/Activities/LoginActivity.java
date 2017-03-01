@@ -11,11 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Managers.LoginCallback;
+import com.example.dam.serflix.Controller.Managers.RequestCallback;
+import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Controller.Managers.UserLoginManager;
+import com.example.dam.serflix.Model.Location;
+import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Model.UserToken;
+import com.example.dam.serflix.Model.enumeration.Company;
+import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
-public class LoginActivity extends AppCompatActivity implements LoginCallback {
+import java.util.Date;
+import java.util.List;
+
+public class LoginActivity extends AppCompatActivity implements LoginCallback, RequestCallback {
     EditText username;
     EditText pass;
     @Override
@@ -63,6 +72,11 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         usu = "admin";
         password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
+
+        Request request =
+                new Request(Type.MOVIE,new Date(2017,02,24),new Date(2017,02,25), Company.ALONE,null,new Location(41.5933302,1.835487));
+
+        RequestManager.getInstance().createRequest(LoginActivity.this,request);
     }
 
 
@@ -72,6 +86,16 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         Toast.makeText(this, "Correcto! Iniciando sesion", Toast.LENGTH_LONG).show();
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onSuccess(List<Request> requestsList) {
+        System.out.println("success request");
+    }
+
+    @Override
+    public void onSucces() {
+
     }
 
     @Override

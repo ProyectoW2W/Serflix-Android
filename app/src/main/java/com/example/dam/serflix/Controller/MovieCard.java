@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.dam.serflix.Model.Movie;
 import com.example.dam.serflix.R;
+import com.squareup.picasso.Picasso;
 
 
 public class MovieCard extends LinearLayout {
@@ -48,18 +49,10 @@ public class MovieCard extends LinearLayout {
         description = (TextView) findViewById(R.id.description);
         image = (ImageView) findViewById(R.id.poster);
         super.onFinishInflate();
-
-        Movie m = new Movie();
-        m.setCast("Jennifer Lawrence, Chris Pratt, Morten Tyldum, Jon Spaihts");
-        m.setDescription("A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early.");
-        m.setTags("Adventure, Drama, Romance, Science Fiction, isolation, spaceship, space");
-        m.setTitle("Passengers");
-        m.setYear("2016");
-        setMovieCard(m);
     }
 
     public void setMovieCard(Movie m) {
-        //image.setImageResource();
+        Picasso.with(this.getContext()).load(m.getPoster()).into(image);
         title.setText(m.getTitle());
         year.setText(m.getYear());
         description.setText(m.getDescription());
