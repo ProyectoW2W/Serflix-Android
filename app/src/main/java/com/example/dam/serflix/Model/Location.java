@@ -6,12 +6,12 @@ package com.example.dam.serflix.Model;
 
 public class Location {
     private double latitude;
-    private double longituded;
+    private double longitude;
 
 
-    public Location(double latitude, double longituded) {
+    public Location(double latitude, double longitude) {
         this.latitude = latitude;
-        this.longituded = longituded;
+        this.longitude = longitude;
     }
 
     public double getLatitude() {
@@ -22,11 +22,11 @@ public class Location {
         this.latitude = latitude;
     }
 
-    public double getLongituded() {
-        return longituded;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongituded(double longituded) {
-        this.longituded = longituded;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }
