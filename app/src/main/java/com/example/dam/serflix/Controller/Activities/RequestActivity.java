@@ -39,16 +39,22 @@ public class RequestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_request);
+
+        //botones lat lon
+        LocationButton = (Button) findViewById(R.id.buttonLatLon);
+        CoordinatesText = (TextView) findViewById(R.id.textLatLon);
+
+        //LLAMAR A GPS
+        ObtainLatLon();
 
         datePickerView = (DatePickerView) findViewById(R.id.datePickerView);
         timePickerView = (TimePickerView) findViewById(R.id.timePickerView);
         companySpinner = (Spinner) findViewById(R.id.companySpinner);
         sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
-        //botones lat lon
-        LocationButton = (Button) findViewById(R.id.buttonLatLon);
-        CoordinatesText = (TextView) findViewById(R.id.textLatLon);
+
 
         //Establecer valores Company Spinner
         Spinner spinner = (Spinner) findViewById(R.id.companySpinner);
@@ -57,8 +63,7 @@ public class RequestActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        //LLAMAR A GPS
-        ObtainLatLon();
+
 
 
 
