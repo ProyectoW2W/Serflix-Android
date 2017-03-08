@@ -21,8 +21,10 @@ public class MovieCard extends LinearLayout {
     TextView description;
     ImageView image;
     //Swipe
-    private float x1,x2;
-    static final int MIN_DISTANCE = 150;
+    private float initialPositionHorizontal, finalPositionHorizontal, initialPositionVertical, finalPositionVertical;
+    static final int MIN_DISTANCE_VERTICAL = 300;
+    static final int MIN_DISTANCE_HORIZONTAL = 150;
+    static final int MIN_DIFFERENCE = 210;
 
 
     public MovieCard(Context context) {
@@ -70,37 +72,48 @@ public class MovieCard extends LinearLayout {
         switch(event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
-                System.out.println("TOUCHEVENT1");
-                x1 = event.getX();
+                //Horizontal
+                initialPositionHorizontal = event.getX();
+                //Vertical
+                initialPositionVertical = event.getY();
                 //break;
                 return true;
             case MotionEvent.ACTION_UP:
-                System.out.println("TOUCHEVENT2");
-                x2 = event.getX();
-                float deltaX = x2 - x1;
-
-                if (Math.abs(deltaX) > MIN_DISTANCE)
-                {
-                    // Left to Right swipe action
-                    if (x2 > x1)
+                //Horizontal
+                finalPositionHorizontal = event.getX();
+                float differenceHorizontal = finalPositionHorizontal - initialPositionHorizontal;
+                //Vertical
+                finalPositionVertical = event.getY();
+                float differenceVertical = finalPositionVertical - initialPositionVertical;
+                //If the horizontal difference is bigger than the minimum means it is a horizontal swipe, else vertical
+                if(Math.abs(differenceHorizontal) > MIN_DIFFERENCE){
+                    //Swipe horizontal
+                    if (Math.abs(differenceHorizontal) > MIN_DISTANCE_HORIZONTAL)
                     {
-                        Toast.makeText(this.getContext(), "Pelicula aceptada", Toast.LENGTH_SHORT).show ();
+                        // Left to Right swipe
+                        if (finalPositionHorizontal > initialPositionHorizontal)
+                        {
+                            Toast.makeText(this.getContext(), "Pelicula aceptada", Toast.LENGTH_SHORT).show ();
+                        }
+                        // Right to left swipe
+                        else
+                        {
+                            Toast.makeText(this.getContext(), "Pelicula rechazada", Toast.LENGTH_SHORT).show ();
+                        }
                     }
-
-                    // Right to left swipe action
-                    else
-                    {
-                        Toast.makeText(this.getContext(), "Pelicula rechazada", Toast.LENGTH_SHORT).show ();
+                }else{
+                    //Swipe vertical
+                    if (Math.abs(differenceVertical) > MIN_DISTANCE_VERTICAL){
+                        if (finalPositionVertical > initialPositionVertical){
+                            Toast.makeText(this.getContext(), "Vista y no me ha gustado", Toast.LENGTH_SHORT).show ();
+                        }else{
+                            Toast.makeText(this.getContext(), "Vista y me ha gustado", Toast.LENGTH_SHORT).show ();
+                        }
                     }
-
-                }
-                else
-                {
-                    // consider as something else - a screen tap for example
                 }
                 break;
             default:
-                System.out.println("TOUCHEVENT3");
+                //Drag
                 break;
         }
         return super.onTouchEvent(event);
