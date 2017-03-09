@@ -94,11 +94,19 @@ public class MovieCard extends LinearLayout {
                         if (finalPositionHorizontal > initialPositionHorizontal)
                         {
                             Toast.makeText(this.getContext(), "Pelicula aceptada", Toast.LENGTH_SHORT).show ();
+                            this.animate()
+                                    .x(getWidth()+500)
+                                    .setDuration(300)
+                                    .start();
                         }
                         // Right to left swipe
                         else
                         {
                             Toast.makeText(this.getContext(), "Pelicula rechazada", Toast.LENGTH_SHORT).show ();
+                            this.animate()
+                                    .x(1-getWidth())
+                                    .setDuration(300)
+                                    .start();
                         }
                     }
                 }else{
@@ -106,16 +114,24 @@ public class MovieCard extends LinearLayout {
                     if (Math.abs(differenceVertical) > MIN_DISTANCE_VERTICAL){
                         if (finalPositionVertical > initialPositionVertical){
                             Toast.makeText(this.getContext(), "Vista y no me ha gustado", Toast.LENGTH_SHORT).show ();
+                            this.animate()
+                                    .y(getHeight()+800)
+                                    .setDuration(300)
+                                    .start();
                         }else{
                             Toast.makeText(this.getContext(), "Vista y me ha gustado", Toast.LENGTH_SHORT).show ();
+                            this.animate()
+                                    .y(1-getHeight())
+                                    .setDuration(300)
+                                    .start();
                         }
                     }
                 }
                 break;
             default:
                 //Drag
-                this.setX(event.getRawX()-initialPositionHorizontal);
-                this.setY(event.getRawY()-initialPositionVertical);
+                //this.setX(event.getRawX()-initialPositionHorizontal);
+                //this.setY(event.getRawY()-initialPositionVertical);
                 break;
         }
         return super.onTouchEvent(event);
