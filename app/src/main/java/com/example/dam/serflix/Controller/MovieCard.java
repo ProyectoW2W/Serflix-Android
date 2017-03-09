@@ -114,6 +114,8 @@ public class MovieCard extends LinearLayout {
                 break;
             default:
                 //Drag
+                this.setX(event.getRawX()-initialPositionHorizontal);
+                this.setY(event.getRawY()-initialPositionVertical);
                 break;
         }
         return super.onTouchEvent(event);
