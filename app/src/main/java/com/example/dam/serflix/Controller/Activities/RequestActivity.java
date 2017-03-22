@@ -17,6 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 
 import com.example.dam.serflix.Controller.DatePickerView;
 import com.example.dam.serflix.Controller.TimePickerView;
@@ -25,11 +33,23 @@ import com.example.dam.serflix.R;
 import java.util.Date;
 
 public class RequestActivity extends AppCompatActivity {
+
+
     private Button sendRequestButton;
+
+
     private Button LocationButton;
     private TextView CoordinatesText;
-    private LocationManager locationManager;
+    //private LocationManager locationManager;
     private LocationListener locationListener;
+
+    private Timer timer;
+    private LocationManager locationManager;
+    private LocationGetter.LocationResult locationResult;
+    private boolean gpsEnabled = false;
+    private boolean networkEnabled = false;
+
+
 
     Spinner companySpinner;
     TimePickerView timePickerView;
@@ -46,9 +66,13 @@ public class RequestActivity extends AppCompatActivity {
         companySpinner = (Spinner) findViewById(R.id.companySpinner);
         sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
-        //botones lat lon
-        LocationButton = (Button) findViewById(R.id.buttonLatLon);
-        CoordinatesText = (TextView) findViewById(R.id.textLatLon);
+
+
+            //botones lat lon
+            LocationButton = (Button) findViewById(R.id.buttonLatLon);
+            CoordinatesText = (TextView) findViewById(R.id.textLatLon);
+
+
 
         //Establecer valores Company Spinner
         Spinner spinner = (Spinner) findViewById(R.id.companySpinner);
@@ -57,8 +81,20 @@ public class RequestActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
+
+
+
         //LLAMAR A GPS
         ObtainLatLon();
+
+
+
+
+
+
+
+
 
 
 
@@ -134,6 +170,32 @@ public class RequestActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
