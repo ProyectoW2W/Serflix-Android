@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dam.serflix.R;
 
@@ -22,8 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         //ObtainLatLon();
+
         //System.out.println("HOLAAAAAASEDFGHJKLJHGFDSAWSDJKML");
         setContentView(R.layout.activity_main);
 
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void ObtainLatLon() {
+        Toast.makeText(this, "HOLIAAAAAAA", Toast.LENGTH_SHORT).show ();
+
         locationManager = (LocationManager) getSystemService((LOCATION_SERVICE));
         locationListener = new LocationListener() {
             @Override
@@ -106,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
 */
+
 
 
 

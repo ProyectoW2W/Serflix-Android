@@ -20,12 +20,12 @@
         android:background="@android:color/white"
         android:fontFamily="sans-serif-condensed"
         android:paddingLeft="15dp"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_alignStart="@+id/editEmail"
         android:paddingRight="15dp"
-        android:layout_marginTop="25dp"
-        android:hint="@string/editPass" />
+        android:layout_marginTop="26dp"
+        android:hint="@string/editPass"
+        android:layout_below="@+id/editEmail"
+        android:layout_alignLeft="@+id/editEmail"
+        android:layout_alignStart="@+id/editEmail" />
 
     <EditText
         android:layout_height="50dp"
@@ -37,9 +37,10 @@
         android:layout_width="310dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_above="@+id/editPass"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/editEmail" />
+        android:hint="@string/editEmail"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/appText"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Serflix"
@@ -68,23 +69,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/signUpText"
         android:textSize="20sp"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/login_btn"
+        android:text="@string/SignUpText"
+        android:layout_above="@+id/request_btn"
         android:layout_alignLeft="@+id/login_btn"
         android:layout_alignStart="@+id/login_btn"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/SignUpText" />
+        android:layout_marginBottom="38dp" />
 
     <Button
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
         android:id="@+id/login_btn"
-        android:layout_below="@+id/editPass"
+        android:text="@string/login_btn"
+        android:layout_above="@+id/signUpText"
         android:layout_alignLeft="@+id/editPass"
         android:layout_alignStart="@+id/editPass"
-        android:text="@string/login_btn" />
+        android:layout_marginBottom="24dp" />
 
     <Button
         android:text="Request"
@@ -92,6 +91,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/request_btn"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/signUp_btn"
+        android:layout_toStartOf="@+id/signUp_btn"
+        android:layout_marginBottom="45dp" />
 
 </RelativeLayout>
