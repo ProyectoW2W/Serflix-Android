@@ -82,6 +82,16 @@ public class RequestActivity extends AppCompatActivity {
                 System.out.println("Day: " + datePickerView.getDate());
                 System.out.println("Time: " + timePickerView.getTime());
 
+               //System.out.println(datePickerView.getDate()+"********"+timePickerView.getTime());
+
+               Date data_time = new Date(
+                       datePickerView.getDate().getYear(), datePickerView.getDate().getMonth(), datePickerView.getDate().getDay(),
+                        timePickerView.getTime().getHours(), timePickerView.getTime().getMinutes(), timePickerView.getTime().getSeconds());
+
+
+
+                //
+
                 //Enviar request
 
                 //Pasar a recommendationActivity
