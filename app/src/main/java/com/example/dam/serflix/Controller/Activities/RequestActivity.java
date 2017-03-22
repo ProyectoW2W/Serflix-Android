@@ -37,12 +37,18 @@ public class RequestActivity extends AppCompatActivity {
 
     private Button sendRequestButton;
 
-
-
+    /*
+    private Button LocationButton;
+    private TextView CoordinatesText;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+*/
     private Timer timer;
     private LocationManager locationManager;
+    //private LocationGetter.LocationResult locationResult;
     private boolean gpsEnabled = false;
     private boolean networkEnabled = false;
+
 
 
     Spinner companySpinner;
@@ -61,6 +67,12 @@ public class RequestActivity extends AppCompatActivity {
         sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
 
+        /*
+            //botones lat lon
+            LocationButton = (Button) findViewById(R.id.buttonLatLon);
+            CoordinatesText = (TextView) findViewById(R.id.textLatLon);
+        */
+
 
         //Establecer valores Company Spinner
         Spinner spinner = (Spinner) findViewById(R.id.companySpinner);
@@ -70,8 +82,20 @@ public class RequestActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
 
+
+
+        /*
         //LLAMAR A GPS
-        //ObtainLatLon();
+        ObtainLatLon();
+        */
+
+
+
+
+
+
+
+
 
 
         //Listeners
@@ -82,16 +106,6 @@ public class RequestActivity extends AppCompatActivity {
                 System.out.println("Day: " + datePickerView.getDate());
                 System.out.println("Time: " + timePickerView.getTime());
 
-               //System.out.println(datePickerView.getDate()+"********"+timePickerView.getTime());
-
-               Date data_time = new Date(
-                       datePickerView.getDate().getYear(), datePickerView.getDate().getMonth(), datePickerView.getDate().getDay(),
-                        timePickerView.getTime().getHours(), timePickerView.getTime().getMinutes(), timePickerView.getTime().getSeconds());
-
-
-
-                //
-
                 //Enviar request
 
                 //Pasar a recommendationActivity
@@ -100,6 +114,92 @@ public class RequestActivity extends AppCompatActivity {
             }
         });
     }
+/*
+    private void ObtainLatLon() {
+        locationManager = (LocationManager) getSystemService((LOCATION_SERVICE));
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                CoordinatesText.append("\n "+location.getLatitude()+" "+location.getLongitude());
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.INTERNET
+                }, 10);
+            }
+            return;
+        }else{
+            configureButton();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 10:
+                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    configureButton();
+                return;
+        }
+
+    }
+
+    private void configureButton(){
+        LocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+            }
+        });
+    }
+
+*/
+
+
+
+
+
+
+    ////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
