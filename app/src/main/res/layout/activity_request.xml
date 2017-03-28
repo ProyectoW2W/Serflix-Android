@@ -44,19 +44,6 @@
             class="com.example.dam.serflix.Controller.TimePickerView"
             android:id="@+id/timePickerView" />
 
-        <Button
-            android:text="Coordinates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonLatLon" />
-
-        <TextView
-            android:text="Latitude and Longitude"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textLatLon"
-            android:layout_weight="0.12" />
-
     </LinearLayout>
 
     <Button
