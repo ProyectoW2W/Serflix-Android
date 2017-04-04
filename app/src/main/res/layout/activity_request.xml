@@ -23,13 +23,25 @@
         android:layout_below="@+id/textView"
         android:weightSum="1">
 
-        <Spinner
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/companySpinner"
-            android:popupBackground="@color/cardview_light_background"
+            android:layout_weight="0.11"
+            android:text=" With whom?"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp" />
+            android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
+            android:textColor="?android:attr/colorControlNormal"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/companySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.11"
+            android:popupBackground="@color/cardview_light_background"
+            android:textAlignment="center" />
 
         <view
             android:layout_width="match_parent"
