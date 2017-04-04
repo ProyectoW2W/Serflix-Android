@@ -33,23 +33,26 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class LoginActivity extends AppCompatActivity implements LoginCallback, RequestCallback {
     EditText username;
     EditText pass;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
+    String latlon = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
         username = (EditText)findViewById(R.id.editEmail);
         pass = (EditText)findViewById(R.id.editPass);
 
+        //Obtenemos latitud y longitud al iniciar la aplicacion para poderla obtener mas rapidamente y poder pasarla correctamente a RequestActivity!!!!!!!
+        //HAY QUE LLAMAR DOS VECES A ObtainLatLon PARA QUE RELLENE CON LATLON Y NO PETE EL LOCATION MANAGER
+        ObtainLatLon();
+        locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
         ObtainLatLon();
 
         Button login_btn = (Button) findViewById(R.id.login_btn);
@@ -75,11 +78,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
         request_btn.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
 
-
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-                ObtainLatLon();
-
+                //PASAMOS A REQUEST ACTIVITY LOS DATOS!!!!!!
                 Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
+                intent.putExtra("latlon", latlon);
                 startActivity(intent);
             }
         });
@@ -126,13 +127,14 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
 
 
     private void ObtainLatLon() {
-        Toast.makeText(this, "Obteniendo Latitud y Longitud!", Toast.LENGTH_SHORT).show ();
 
         locationManager = (LocationManager) getSystemService((LOCATION_SERVICE));
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(android.location.Location location) {
-               // CoordinatesText.append("\n "+location.getLatitude()+" "+location.getLongitude());
+                //Log.d("Coordenadas", "Latitud = " +location.getLatitude() + " , Longitud = " + location.getLongitude());
+                latlon = String.valueOf(location.getLatitude()+","+location.getLongitude());
+                //System.out.println(latlon + " --------- latlon1");
             }
 
             @Override
@@ -171,31 +173,5 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
                     //configureButton();
                 return;
         }
-
     }
-
-
-/*
-    private void configureButton(){
-        LocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-            }
-        });
-    }
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
 }
