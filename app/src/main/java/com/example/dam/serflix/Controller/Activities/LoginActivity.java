@@ -60,8 +60,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
             @Override public void onClick(View v){
                 if (username.getText().toString().equals("")|| pass.getText().toString().equals("") )
                     System.out.println("LOGIN NULL");
-                else
+                else {
                     attemptLogin();
+                }
             }
         });
 
@@ -92,11 +93,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
         usu = "admin";
         password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
-
-        Request request =
-                new Request(Type.MOVIE,new Date(2017,02,24),new Date(2017,02,25), Company.ALONE,null,new Location(41.5933302,1.835487));
-
-        RequestManager.getInstance().createRequest(LoginActivity.this,request);
     }
 
 
@@ -104,6 +100,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
     public void onSuccess(UserToken userToken) {
         Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
         Toast.makeText(this, "Correcto! Iniciando sesion", Toast.LENGTH_LONG).show();
+        intent.putExtra("latlon", latlon);
         startActivity(intent);
         finish();
     }

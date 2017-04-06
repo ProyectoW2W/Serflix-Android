@@ -13,8 +13,8 @@ import retrofit2.http.POST;
 
 public interface RequestService {
 
-    @POST("api/requests")
-    Call<Request> createRequest(
+    @POST("api/newrequest")
+    Call<Request> createNewRequest(
             @Header("Authorization") String Authorization,
             @Body Request request);
 

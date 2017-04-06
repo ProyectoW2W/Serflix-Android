@@ -3,8 +3,6 @@ package com.example.dam.serflix.Model;
 import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 
-import java.util.Date;
-
 /**
  * Created by DAM on 23/2/17.
  */
@@ -12,22 +10,19 @@ import java.util.Date;
 public class Request {
 
     private Type type;
-    private Date viewDate;
-    private Date creationDate;
+    private String viewDate;
+    private String creationDate;
     private Company company;
 
-    private UserToken userRequester;
-
-    private Location location;
+    private String location;
     //añadir  userGuest
 
 
-    public Request(Type type, Date viewDate, Date creationDate, Company company, UserToken userRequester, Location location) {
+    public Request(Type type, String viewDate, String creationDate, Company company, String location) {
         this.type = type;
         this.viewDate = viewDate;
         this.creationDate = creationDate;
         this.company = company;
-        this.userRequester = userRequester;
         this.location = location;
     }
 
@@ -39,19 +34,19 @@ public class Request {
         this.type = type;
     }
 
-    public Date getViewDate() {
+    public String getViewDate() {
         return viewDate;
     }
 
-    public void setViewDate(Date viewDate) {
+    public void setViewDate(String viewDate) {
         this.viewDate = viewDate;
     }
 
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -63,19 +58,12 @@ public class Request {
         this.company = company;
     }
 
-    public UserToken getUserRequester() {
-        return userRequester;
-    }
 
-    public void setUserRequester(UserToken userRequester) {
-        this.userRequester = userRequester;
-    }
-
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 }

@@ -4,95 +4,122 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Controller.Activities.LoginActivity"
-    android:background="?android:attr/windowBackground">
+    tools:context=".Controller.Activities.LoginActivity">
 
-    <EditText
-        android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editPass"
-        android:background="@android:color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_marginTop="26dp"
-        android:hint="@string/editPass"
-        android:layout_below="@+id/editEmail"
-        android:layout_alignLeft="@+id/editEmail"
-        android:layout_alignStart="@+id/editEmail" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:layout_height="50dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editEmail"
-        android:background="@android:color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:layout_width="310dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:hint="@string/editEmail"
-        android:layout_marginTop="46dp"
-        android:layout_below="@+id/appText"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/appText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.14"
+            android:text="Serflix"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="80dp"
+            android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="Serflix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/appText"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/white"
-        android:textSize="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/appText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="46dp"
+            android:layout_weight="0.16"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:hint="@string/editEmail"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textAlignment="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signUp_btn"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/signUpText"
-        android:layout_alignBottom="@+id/signUpText"
-        android:layout_alignRight="@+id/appText"
-        android:layout_alignEnd="@+id/appText"
-        android:text="@string/signUpBtn" />
+        <EditText
+            android:id="@+id/editPass"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/editEmail"
+            android:layout_alignStart="@+id/editEmail"
+            android:layout_below="@+id/editEmail"
+            android:layout_marginTop="26dp"
+            android:layout_weight="0.15"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:hint="@string/editPass"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textAlignment="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signUpText"
-        android:textSize="20sp"
-        android:text="@string/SignUpText"
-        android:layout_above="@+id/request_btn"
-        android:layout_alignLeft="@+id/login_btn"
-        android:layout_alignStart="@+id/login_btn"
-        android:layout_marginBottom="38dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.14"
+            android:orientation="horizontal">
 
-    <Button
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_btn"
-        android:text="@string/login_btn"
-        android:layout_above="@+id/signUpText"
-        android:layout_alignLeft="@+id/editPass"
-        android:layout_alignStart="@+id/editPass"
-        android:layout_marginBottom="24dp" />
+            <TextView
+                android:id="@+id/signUpText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/request_btn"
+                android:layout_alignLeft="@+id/login_btn"
+                android:layout_alignStart="@+id/login_btn"
+                android:layout_marginBottom="28dp"
+                android:layout_weight="1"
+                android:text="@string/SignUpText"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-    <Button
-        android:text="Request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/request_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/signUp_btn"
-        android:layout_toStartOf="@+id/signUp_btn"
-        android:layout_marginBottom="45dp" />
+            <TextView
+                android:id="@+id/signUp_btn"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/signUpText"
+                android:layout_alignBottom="@+id/signUpText"
+                android:layout_alignEnd="@+id/appText"
+                android:layout_alignRight="@+id/appText"
+                android:text="@string/signUpBtn"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/signUp_btn"
+            android:layout_alignLeft="@+id/editPass"
+            android:layout_alignStart="@+id/editPass"
+            android:layout_marginBottom="21dp"
+            android:layout_weight="0.16"
+            android:text="@string/login_btn"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/request_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="45dp"
+            android:layout_toLeftOf="@+id/signUp_btn"
+            android:layout_toStartOf="@+id/signUp_btn"
+            android:layout_weight="1"
+            android:text="Request"
+            android:textAlignment="center" />
+    </LinearLayout>
 
 </RelativeLayout>
