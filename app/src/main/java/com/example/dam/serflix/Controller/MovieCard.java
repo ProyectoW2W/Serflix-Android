@@ -2,11 +2,9 @@ package com.example.dam.serflix.Controller;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dam.serflix.Model.Movie;
 import com.example.dam.serflix.R;
@@ -20,12 +18,6 @@ public class MovieCard extends LinearLayout {
     TextView cast;
     TextView description;
     ImageView image;
-    //Swipe
-    private float initialPositionHorizontal, finalPositionHorizontal, initialPositionVertical, finalPositionVertical;
-    static final int MIN_DISTANCE_VERTICAL = 300;
-    static final int MIN_DISTANCE_HORIZONTAL = 150;
-    static final int MIN_DIFFERENCE = 210;
-
 
     public MovieCard(Context context) {
         super(context);
@@ -67,73 +59,62 @@ public class MovieCard extends LinearLayout {
         tags.setText(m.getTags());
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch(event.getAction())
-        {
-            case MotionEvent.ACTION_DOWN:
-                //Horizontal
-                initialPositionHorizontal = event.getX();
-                //Vertical
-                initialPositionVertical = event.getY();
-                //break;
-                return true;
-            case MotionEvent.ACTION_UP:
-                //Horizontal
-                finalPositionHorizontal = event.getX();
-                float differenceHorizontal = finalPositionHorizontal - initialPositionHorizontal;
-                //Vertical
-                finalPositionVertical = event.getY();
-                float differenceVertical = finalPositionVertical - initialPositionVertical;
-                //If the horizontal difference is bigger than the minimum means it is a horizontal swipe, else vertical
-                if(Math.abs(differenceHorizontal) > MIN_DIFFERENCE){
-                    //Swipe horizontal
-                    if (Math.abs(differenceHorizontal) > MIN_DISTANCE_HORIZONTAL)
-                    {
-                        // Left to Right swipe
-                        if (finalPositionHorizontal > initialPositionHorizontal)
-                        {
-                            Toast.makeText(this.getContext(), "Pelicula aceptada", Toast.LENGTH_SHORT).show ();
-                            this.animate()
-                                    .x(getWidth()+500)
-                                    .setDuration(300)
-                                    .start();
-                        }
-                        // Right to left swipe
-                        else
-                        {
-                            Toast.makeText(this.getContext(), "Pelicula rechazada", Toast.LENGTH_SHORT).show ();
-                            this.animate()
-                                    .x(1-getWidth())
-                                    .setDuration(300)
-                                    .start();
-                        }
-                    }
-                }else{
-                    //Swipe vertical
-                    if (Math.abs(differenceVertical) > MIN_DISTANCE_VERTICAL){
-                        if (finalPositionVertical > initialPositionVertical){
-                            Toast.makeText(this.getContext(), "Vista y no me ha gustado", Toast.LENGTH_SHORT).show ();
-                            this.animate()
-                                    .y(getHeight()+800)
-                                    .setDuration(300)
-                                    .start();
-                        }else{
-                            Toast.makeText(this.getContext(), "Vista y me ha gustado", Toast.LENGTH_SHORT).show ();
-                            this.animate()
-                                    .y(1-getHeight())
-                                    .setDuration(300)
-                                    .start();
-                        }
-                    }
-                }
-                break;
-            default:
-                //Drag
-                //this.setX(event.getRawX()-initialPositionHorizontal);
-                //this.setY(event.getRawY()-initialPositionVertical);
-                break;
-        }
-        return super.onTouchEvent(event);
+    public Movie getMovie(MovieCard mc){
+        Movie movie = new Movie();
+        movie.setTags(mc.getTags().toString());
+        movie.setTitle(mc.getTitle().toString());
+        movie.setYear(mc.getYear().toString());
+        movie.setCast(mc.getCast().toString());
+        movie.setDescription(mc.getDescription().toString());
+        movie.setPoster(mc.getImage().toString());
+        return movie;
+    }
+
+    public TextView getTags() {
+        return tags;
+    }
+
+    public void setTags(TextView tags) {
+        this.tags = tags;
+    }
+
+    public TextView getTitle() {
+        return title;
+    }
+
+    public void setTitle(TextView title) {
+        this.title = title;
+    }
+
+    public TextView getYear() {
+        return year;
+    }
+
+    public void setYear(TextView year) {
+        this.year = year;
+    }
+
+    public TextView getCast() {
+        return cast;
+    }
+
+    public void setCast(TextView cast) {
+        this.cast = cast;
+    }
+
+    public TextView getDescription() {
+        return description;
+    }
+
+    public void setDescription(TextView description) {
+        this.description = description;
+    }
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
     }
 }
