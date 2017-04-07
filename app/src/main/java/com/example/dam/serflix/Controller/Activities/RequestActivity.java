@@ -1,38 +1,29 @@
 package com.example.dam.serflix.Controller.Activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
 
 import com.example.dam.serflix.Controller.DatePickerView;
+import com.example.dam.serflix.Controller.Managers.RequestCallback;
+import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Controller.TimePickerView;
+import com.example.dam.serflix.Model.Request;
+import com.example.dam.serflix.Model.enumeration.Company;
+import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Timer;
 
-public class RequestActivity extends AppCompatActivity {
+public class RequestActivity extends AppCompatActivity implements RequestCallback {
 
 
     private Button sendRequestButton;
@@ -67,7 +58,7 @@ public class RequestActivity extends AppCompatActivity {
         sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
         Bundle extras = getIntent().getExtras();
-        String latlon = extras.getString("latlon");
+        final String latlon = extras.getString("latlon");
         System.out.println(latlon);
 
 
@@ -86,13 +77,36 @@ public class RequestActivity extends AppCompatActivity {
                 System.out.println("Company: " + companySpinner.getSelectedItem());
                 System.out.println("Day: " + datePickerView.getDate());
                 System.out.println("Time: " + timePickerView.getTime());
+                Date tiempo = datePickerView.getDate();
+                long milis = tiempo.getTime();
+                milis += timePickerView.getTime().getTime();
+                tiempo.setTime(milis);
 
+                SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+                String fechaStr = formatter.format(tiempo);
                 //Enviar request
-
+                //Type type, String viewDate, String creationDate, Company company, String location
+                Request request = new Request(Type.MOVIE, fechaStr, fechaStr, Company.ALONE, latlon);
+                RequestManager.getInstance().createRequest(RequestActivity.this, request);
                 //Pasar a recommendationActivity
                 Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onSuccess(List<Request> requestsList) {
+
+    }
+
+    @Override
+    public void onSucces() {
+
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
     }
 }

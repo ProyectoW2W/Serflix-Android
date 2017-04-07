@@ -29,4 +29,8 @@ public class Location {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public String getCoordinates(){
+        return this.latitude+","+this.longitude;
+    }
 }

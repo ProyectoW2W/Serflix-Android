@@ -43,7 +43,7 @@ public class RequestManager {
     }
 
     public synchronized void createRequest(final RequestCallback requestCallback,Request request) {
-        Call<Request> call = requestService.createRequest(UserLoginManager.getInstance().getBearerToken(), request);
+        Call<Request> call = requestService.createNewRequest(UserLoginManager.getInstance().getBearerToken(), request);
         call.enqueue(new Callback<Request>() {
             @Override
             public void onResponse(Call<Request> call, Response<Request> response) {
