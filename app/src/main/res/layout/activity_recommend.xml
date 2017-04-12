@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dam.serflix.Controller.Activities.RecommendationActivity">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/frame"
-        android:background="#ffeee9e2"
+    <com.huxq17.swipecardsview.SwipeCardsView
+        android:id="@+id/swipeCardsView"
+        android:background="?android:attr/windowBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:rotation_degrees="15.5"
-        tools:context=".Controller.Activities.RecommendationActivity" />
+        android:layout_height="wrap_content"
+        app:alphaOffsetStep="20"
+        app:scaleOffsetStep="0.08"
+        app:yOffsetStep="20dp"
+        ></com.huxq17.swipecardsview.SwipeCardsView>
 
-    <include layout="@layout/swipe_buttons" />
-
-</merge>
+</RelativeLayout>
