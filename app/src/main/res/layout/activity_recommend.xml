@@ -8,12 +8,13 @@
 
     <com.huxq17.swipecardsview.SwipeCardsView
         android:id="@+id/swipeCardsView"
-        android:background="?android:attr/windowBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="?android:attr/windowBackground"
         app:alphaOffsetStep="20"
         app:scaleOffsetStep="0.08"
-        app:yOffsetStep="20dp"
-        ></com.huxq17.swipecardsview.SwipeCardsView>
+        app:yOffsetStep="20dp"></com.huxq17.swipecardsview.SwipeCardsView>
 
 </RelativeLayout>

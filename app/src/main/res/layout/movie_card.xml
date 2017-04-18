@@ -8,71 +8,71 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp" />
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
-
-            <ImageView
-                android:id="@+id/poster"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="match_parent">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Passengers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/title"
-                        android:layout_weight="1"
-                        android:textSize="18sp"
-                        android:textStyle="normal|bold" />
-
-                    <TextView
-                        android:text="2016"
-                        android:layout_width="52dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/year" />
-                </LinearLayout>
+                android:orientation="horizontal">
 
                 <TextView
-                    android:text="Tal tal tal tal tal tal tal tal tal tal tal tal tal"
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cast"
-                    android:textSize="10sp"
-                    android:textColor="@android:color/darker_gray" />
+                    android:layout_weight="1"
+                    android:text="Passengers"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold" />
 
                 <TextView
-                    android:text="A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early."
-                    android:layout_width="match_parent"
+                    android:id="@+id/year"
+                    android:layout_width="52dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/description"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:text="Waaaaaaaaaaaaa"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tags"
-                    android:textSize="10sp"
-                    android:textColor="@android:color/darker_gray" />
+                    android:text="2016" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tal tal tal tal tal tal tal tal tal tal tal tal tal"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A spacecraft traveling to a distant colony planet and transporting thousands of people has a malfunction in its sleep chambers. As a result, two passengers are awakened 90 years early."
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waaaaaaaaaaaaa"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="10sp" />
         </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

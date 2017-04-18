@@ -19,6 +19,7 @@ import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -84,9 +85,12 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
                 SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
                 String fechaStr = formatter.format(tiempo);
+
+                String timeNow = formatter.format(Calendar.getInstance().getTime());
+
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
-                Request request = new Request(Type.MOVIE, fechaStr, fechaStr, Company.ALONE, latlon);
+                Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);
                 //Pasar a recommendationActivity
                 Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
