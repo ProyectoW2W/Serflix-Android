@@ -1,7 +1,16 @@
 package com.example.dam.serflix.Controller.Activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Adapter.CardAdapter;
 import com.example.dam.serflix.Model.Movie;
@@ -16,6 +25,7 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private SwipeCardsView swipeCardsView;
     private List<Movie> movieList = new ArrayList<>();
+    private int curIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +36,39 @@ public class RecommendationActivity extends AppCompatActivity {
         swipeCardsView.retainLastCard(false);
         swipeCardsView.enableSwipe(true);
         getData();
+
+        swipeCardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
+            @Override
+            //METODO PARA CUANDO SE ESTA MOSTRANDO LA TARJETA.
+            public void onShow(int index) {
+                curIndex = index;
+                Log.d("Sergio", "Tarjeta "+curIndex);
+            }
+
+            @Override
+            //METODO PARA CUANDO SE DESLIZA LA TARJETA.
+            public void onCardVanish(int index, SwipeCardsView.SlideType type) {
+                switch (type) {
+                    case LEFT:
+                        Log.d("Sergio", "LEFT");
+                        break;
+                    case RIGHT:
+                        Log.d("Sergio", "RIGHT");
+                        break;
+                }
+            }
+
+            @Override
+            //METODO PARA CUANDO SE HACE CLICK EN LA TARJETA
+            public void onItemClick(View cardImageView, int index) {
+                Log.d("Sergio","Click en card "+index);
+
+            }
+        });
     }
 
     private void getData() {
+
         movieList.add(new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"));
         movieList.add(new Movie("The Poseidon Adventure","Gene Hackman","Action, Adventure","https://image.tmdb.org/t/p/w1280/3Ypk0OLrECSp7tqQFLMppGBrHfo.jpg","The Poseidon Adventure was one of the first Catastrophe films and began the Disaster Film genre. Director Neame tells the story of a group of people that must fight for their lives aboard a sinking ship. Based on the novel by Paul Gallico.","1972-12-01"));
         movieList.add(new Movie("Pane e Tulipani","Licia Maglietta","Drama, Comedy, Romance","https://image.tmdb.org/t/p/w1280/bVsJsE6fSzauhFZDuhNJ9SHs10f.jpg","An endearing light comedy about a woman who spontaneously becomes a resident of Venice after her family left her begin. While enjoying the wonderful people she meets she achieves a new life and the first time independent of her family.","2000-03-03"));
@@ -45,6 +85,13 @@ public class RecommendationActivity extends AppCompatActivity {
 
     }
 
+//    public void doLeftOut() {
+//        swipeCardsView.slideCardOut(SwipeCardsView.SlideType.LEFT);
+//    }
+//
+//    public void doRightOut() {
+//        swipeCardsView.slideCardOut(SwipeCardsView.SlideType.RIGHT);
+//    }
 
 }
 
