@@ -53,6 +53,6 @@ public class CardAdapter extends BaseCardAdapter {
         year.setText(movie.getYear());
         cast.setText(movie.getCast());
         description.setText(movie.getDescription());
-        tags.setText(movie.getCast());
+        tags.setText(movie.getTags());
     }
 }
