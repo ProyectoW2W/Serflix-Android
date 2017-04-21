@@ -2,6 +2,7 @@ package com.example.dam.serflix.Controller.Activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +61,10 @@ public class RecommendationActivity extends AppCompatActivity {
                     case RIGHT:
                         Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
                         Log.d("Sergio", "RIGHT");
+                        Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
+                        intent.putExtra("poster", movieList.get(index).getMovieDTO().getPoster());
+                        intent.putExtra("title", movieList.get(index).getMovieDTO().getTitle());
+                        startActivity(intent);
                         break;
                 }
             }
