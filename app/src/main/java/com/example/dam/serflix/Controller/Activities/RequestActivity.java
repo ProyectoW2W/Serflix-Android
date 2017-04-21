@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import com.example.dam.serflix.Controller.DatePickerView;
 import com.example.dam.serflix.Controller.Managers.RequestCallback;
 import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Controller.TimePickerView;
+import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
@@ -100,12 +102,19 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
     }
 
     @Override
+    public void onSuccessMR(List<MovieRecommendation> requestsList) {
+        Log.d("Alberto","Funciona. Pendiente de probar!!");
+    }
+
+    @Override
     public void onSuccess(List<Request> requestsList) {
 
     }
 
     @Override
-    public void onSucces() {
+    public void onSuccess(Request request) {
+
+        RequestManager.getInstance().getRecomendations(RequestActivity.this, request);
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.dam.serflix.Controller.Managers;
 
+import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 
 public interface RequestCallback {
     void onSuccess(List<Request> requestsList);
-    void onSucces();
+    void onSuccess(Request request);
+    void onSuccessMR(List<MovieRecommendation>  movieRecommendations);
 
     void onFailure(Throwable t);
 }

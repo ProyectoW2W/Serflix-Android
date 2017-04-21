@@ -9,6 +9,7 @@ import com.example.dam.serflix.Model.enumeration.Type;
 
 public class Request {
 
+    private Long id;
     private Type type;
     private String viewDate;
     private String creationDate;
@@ -24,6 +25,17 @@ public class Request {
         this.creationDate = creationDate;
         this.company = company;
         this.location = location;
+    }
+
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Type getType() {

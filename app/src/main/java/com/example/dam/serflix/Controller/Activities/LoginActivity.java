@@ -23,6 +23,7 @@ import com.example.dam.serflix.Controller.Managers.RequestCallback;
 import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Controller.Managers.UserLoginManager;
 import com.example.dam.serflix.Model.Location;
+import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Model.UserToken;
 import com.example.dam.serflix.Model.enumeration.Company;
@@ -111,9 +112,15 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
     }
 
     @Override
-    public void onSucces() {
+    public void onSuccess(Request request) {
 
     }
+
+    @Override
+    public void onSuccessMR(List<MovieRecommendation> movieRecommendations) {
+
+    }
+
 
     @Override
     public void onFailure(Throwable t) {

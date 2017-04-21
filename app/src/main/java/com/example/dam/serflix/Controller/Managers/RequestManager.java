@@ -3,6 +3,7 @@ package com.example.dam.serflix.Controller.Managers;
 import android.util.Log;
 
 import com.example.dam.serflix.Controller.Services.RequestService;
+import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Util.CustomProperties;
 
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RequestManager {
     private static RequestManager ourInstance;
-    private List<Request> players;
+    private List<Request> users;
     private Retrofit retrofit;
     private RequestService requestService;
 
@@ -51,7 +52,8 @@ public class RequestManager {
 
                 if (code == 200 || code == 201) {
                     //playerCallback.onSuccess1(apuestas1x2);
-                    Log.e("Player->", "createPlayer: OK" + 100);
+                    Log.e("User->", "createUser: OK" + 100);
+                    requestCallback.onSuccess(response.body());
 
                 } else {
                     requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
@@ -60,7 +62,32 @@ public class RequestManager {
 
             @Override
             public void onFailure(Call<Request> call, Throwable t) {
-                Log.e("PlayerManager->", "createPlayer: " + t);
+                Log.e("UserManager->", "createUser: " + t);
+
+                requestCallback.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getRecomendations(final RequestCallback requestCallback,Request request) {
+        Call<MovieRecommendation> call = requestService.getRecomendations(request.getId(),UserLoginManager.getInstance().getBearerToken());
+        call.enqueue(new Callback<MovieRecommendation>() {
+            @Override
+            public void onResponse(Call<MovieRecommendation> call, Response<MovieRecommendation> response) {
+                int code = response.code();
+
+                if (code == 200 || code == 201) {
+                    //playerCallback.onSuccess1(apuestas1x2);
+                    Log.e("User->", "createUser: OK" + 100);
+
+                } else {
+                    requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieRecommendation> call, Throwable t) {
+                Log.e("UserManager->", "createUser: " + t);
 
                 requestCallback.onFailure(t);
             }
