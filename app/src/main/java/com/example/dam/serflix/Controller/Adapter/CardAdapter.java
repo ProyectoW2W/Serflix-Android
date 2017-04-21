@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dam.serflix.Model.Movie;
+import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.R;
 import com.huxq17.swipecardsview.BaseCardAdapter;
 import com.squareup.picasso.Picasso;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class CardAdapter extends BaseCardAdapter {
 
-    private List<Movie> movieList;
+    private List<MovieRecommendation> movieList;
     private Context context;
 
-    public CardAdapter(List<Movie> movieList, Context context) {
+    public CardAdapter(List<MovieRecommendation> movieList, Context context) {
         this.movieList = movieList;
         this.context = context;
     }
@@ -47,12 +48,12 @@ public class CardAdapter extends BaseCardAdapter {
         TextView cast = (TextView)cardview.findViewById(R.id.cast);
         TextView description = (TextView)cardview.findViewById(R.id.description);
         TextView tags = (TextView)cardview.findViewById(R.id.tags);
-        Movie movie = movieList.get(position);
-        Picasso.with(context).load(movie.getPoster()).into(poster);
-        title.setText(movie.getTitle());
-        year.setText(movie.getYear());
-        cast.setText(movie.getCast());
-        description.setText(movie.getDescription());
-        tags.setText(movie.getTags());
+        MovieRecommendation mr = movieList.get(position);
+        Picasso.with(context).load(mr.getMovieDTO().getPoster()).into(poster);
+        title.setText(mr.getMovieDTO().getTitle());
+        year.setText(mr.getMovieDTO().getYear());
+        cast.setText(mr.getMovieDTO().getCast());
+        description.setText(mr.getMovieDTO().getDescription());
+        tags.setText(mr.getMovieDTO().getTags());
     }
 }
