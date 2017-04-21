@@ -2,6 +2,7 @@ package com.example.dam.serflix.Controller.Activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.dam.serflix.Controller.Adapter.CardAdapter;
 import com.example.dam.serflix.Model.Movie;
 import com.example.dam.serflix.Model.MovieRecommendation;
+import com.example.dam.serflix.Model.enumeration.RecomendationResult;
 import com.example.dam.serflix.R;
 import com.huxq17.swipecardsview.SwipeCardsView;
 
@@ -55,11 +57,17 @@ public class RecommendationActivity extends AppCompatActivity {
                 switch (type) {
                     case LEFT:
                         Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
-                        Log.d("Sergio", "LEFT");
+                        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+                        movieList.get(index).setRecomendationResult(RecomendationResult.REJECTED);
                         break;
                     case RIGHT:
                         Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
-                        Log.d("Sergio", "RIGHT");
+                        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
+                        movieList.get(index).setRecomendationResult(RecomendationResult.ACCEPTED);
+                        Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
+                        intent.putExtra("poster", movieList.get(index).getMovieDTO().getPoster());
+                        intent.putExtra("title", movieList.get(index).getMovieDTO().getTitle());
+                        startActivity(intent);
                         break;
                 }
             }
