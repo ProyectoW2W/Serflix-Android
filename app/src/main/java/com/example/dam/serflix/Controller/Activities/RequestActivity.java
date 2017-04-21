@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 
 public class RequestActivity extends AppCompatActivity implements RequestCallback {
@@ -85,9 +86,8 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 milis += timePickerView.getTime().getTime();
                 tiempo.setTime(milis);
 
-                SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+                SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a", Locale.ENGLISH);
                 String fechaStr = formatter.format(tiempo);
-
                 String timeNow = formatter.format(Calendar.getInstance().getTime());
 
                 //Enviar request
