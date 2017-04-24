@@ -20,6 +20,9 @@ import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
+import java.sql.SQLOutput;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -74,6 +77,8 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
         spinner.setAdapter(adapter);
 
 
+        datePickerView.setDate(Calendar.getInstance().getTime());
+
         //Listeners
         sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +91,14 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 milis += timePickerView.getTime().getTime();
                 tiempo.setTime(milis);
 
+
                 SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a", Locale.ENGLISH);
                 String fechaStr = formatter.format(tiempo);
                 String timeNow = formatter.format(Calendar.getInstance().getTime());
+
+//                if(timeNow==null){
+//                    timePickerView.setTime(Time.valueOf(formatter.format(tiempo)));
+//                }
 
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
