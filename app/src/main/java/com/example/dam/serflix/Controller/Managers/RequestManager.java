@@ -7,6 +7,8 @@ import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Util.CustomProperties;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,6 +26,9 @@ public class RequestManager {
     private List<Request> users;
     private Retrofit retrofit;
     private RequestService requestService;
+    private List<MovieRecommendation> movieRecommendations =  new ArrayList<>();
+    private Request request;
+
 
     private RequestManager() {
         retrofit = new Retrofit.Builder()
@@ -43,7 +48,15 @@ public class RequestManager {
         return ourInstance;
     }
 
-    public synchronized void createRequest(final RequestCallback requestCallback,Request request) {
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+    public synchronized void createRequest(final RequestCallback requestCallback, Request request) {
         Call<Request> call = requestService.createNewRequest(UserLoginManager.getInstance().getBearerToken(), request);
         call.enqueue(new Callback<Request>() {
             @Override
@@ -69,29 +82,34 @@ public class RequestManager {
         });
     }
 
-    public synchronized void getRecomendations(final RequestCallback requestCallback,Request request) {
-        Call<MovieRecommendation> call = requestService.getRecomendations(request.getId(),UserLoginManager.getInstance().getBearerToken());
-        call.enqueue(new Callback<MovieRecommendation>() {
+    public synchronized List<MovieRecommendation> getRecomendations(final RequestCallback requestCallback,Request request) {
+        Call<List<MovieRecommendation>> call = requestService.getRecomendations(request.getId(),UserLoginManager.getInstance().getBearerToken());
+        call.enqueue(new Callback<List<MovieRecommendation>>() {
             @Override
-            public void onResponse(Call<MovieRecommendation> call, Response<MovieRecommendation> response) {
+            public void onResponse(Call<List<MovieRecommendation>> call, Response<List<MovieRecommendation>> response) {
                 int code = response.code();
 
                 if (code == 200 || code == 201) {
                     //playerCallback.onSuccess1(apuestas1x2);
                     Log.e("User->", "createUser: OK" + 100);
-
+                    try {
+                        movieRecommendations = call.execute().body();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<MovieRecommendation> call, Throwable t) {
+            public void onFailure(Call<List<MovieRecommendation>> call, Throwable t) {
                 Log.e("UserManager->", "createUser: " + t);
 
                 requestCallback.onFailure(t);
             }
         });
+        return movieRecommendations;
     }
 
 }

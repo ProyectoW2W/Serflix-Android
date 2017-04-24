@@ -93,6 +93,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
                 Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
+                RequestManager.getInstance().setRequest(request);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);
                 //Pasar a recommendationActivity
                 Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);

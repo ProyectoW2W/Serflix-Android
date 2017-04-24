@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Adapter.CardAdapter;
+import com.example.dam.serflix.Controller.Managers.RequestCallback;
+import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Model.Movie;
 import com.example.dam.serflix.Model.MovieRecommendation;
+import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Model.enumeration.RecomendationResult;
 import com.example.dam.serflix.R;
 import com.huxq17.swipecardsview.SwipeCardsView;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecommendationActivity extends AppCompatActivity {
+public class RecommendationActivity extends AppCompatActivity implements RequestCallback{
 
     private SwipeCardsView swipeCardsView;
     private List<MovieRecommendation> movieList = new ArrayList<>();
@@ -83,6 +86,22 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private void getData() {
 
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    synchronized (this) {
+                        wait(3000);
+                    }
+                } catch (InterruptedException ex) {
+                }
+
+                // TODO              
+            }
+        };
+
+        thread.start();
+
         Movie m1 = new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"); movies.add(m1);
         Movie m2 = new Movie("The Poseidon Adventure","Gene Hackman","Action, Adventure","https://image.tmdb.org/t/p/w1280/3Ypk0OLrECSp7tqQFLMppGBrHfo.jpg","The Poseidon Adventure was one of the first Catastrophe films and began the Disaster Film genre. Director Neame tells the story of a group of people that must fight for their lives aboard a sinking ship. Based on the novel by Paul Gallico.","1972-12-01"); movies.add(m2);
         Movie m3 = new Movie("Pane e Tulipani","Licia Maglietta","Drama, Comedy, Romance","https://image.tmdb.org/t/p/w1280/bVsJsE6fSzauhFZDuhNJ9SHs10f.jpg","An endearing light comedy about a woman who spontaneously becomes a resident of Venice after her family left her begin. While enjoying the wonderful people she meets she achieves a new life and the first time independent of her family.","2000-03-03"); movies.add(m3);
@@ -99,6 +118,7 @@ public class RecommendationActivity extends AppCompatActivity {
             mr.setMovieDTO(m);
             movieList.add(mr);
         }
+        List<MovieRecommendation> recommendations = RequestManager.getInstance().getRecomendations(RecommendationActivity.this, RequestManager.getInstance().getRequest());
 
         //movieList.add(new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"));
         //movieList.add(new Movie("The Poseidon Adventure","Gene Hackman","Action, Adventure","https://image.tmdb.org/t/p/w1280/3Ypk0OLrECSp7tqQFLMppGBrHfo.jpg","The Poseidon Adventure was one of the first Catastrophe films and began the Disaster Film genre. Director Neame tells the story of a group of people that must fight for their lives aboard a sinking ship. Based on the novel by Paul Gallico.","1972-12-01"));
@@ -111,8 +131,28 @@ public class RecommendationActivity extends AppCompatActivity {
         //movieList.add(new Movie("Spider-Man 3","Tobey Maguire","Action, Fantasy","https://image.tmdb.org/t/p/w1280/uC2pAMjb32NIgQ1GdC1Bl6LZJc2.jpg","The seemingly invincible Spider-Man goes up against an all-new crop of villain – including the shape-shifting Sandman. While Spider-Man’s superpowers are altered by an alien organism, his alter ego, Peter Parker, deals with nemesis Eddie Brock and also gets caught up in a love triangle.","2007-05-01"));
         //movieList.add(new Movie("Secret Beyond the Door","Joan Bennett","Crime, Drama, Thriller","https://image.tmdb.org/t/p/w1280/f2CqQR8DF2I3DvmJFp5lRzRKD30.jpg","Fritz Lang’s psycho thriller tells the story of a woman who marries a stranger with a deadly hobby and through their love he attempts to fight off his obsessive-compulsive actions.","1948-01-01"));
 
-        CardAdapter cardAdapter = new CardAdapter(movieList, this);
+        CardAdapter cardAdapter = new CardAdapter(recommendations, this);
         swipeCardsView.setAdapter(cardAdapter);
+
+    }
+
+    @Override
+    public void onSuccess(List<Request> requestsList) {
+
+    }
+
+    @Override
+    public void onSuccess(Request request) {
+
+    }
+
+    @Override
+    public void onSuccessMR(List<MovieRecommendation> movieRecommendations) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
 
     }
 }

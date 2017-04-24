@@ -4,6 +4,8 @@ import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.R;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -24,7 +26,7 @@ public interface RequestService {
             @Body Request request);
 
     @GET("/requests/{id}/recommendations")
-    Call<MovieRecommendation> getRecomendations(
+    Call<List<MovieRecommendation>> getRecomendations(
             @Path("id") Long id,
             @Header("Authorization") String Authorization);
 
