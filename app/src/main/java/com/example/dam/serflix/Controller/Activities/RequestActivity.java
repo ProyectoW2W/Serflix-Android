@@ -20,9 +20,7 @@ import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
-import java.sql.SQLOutput;
 import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -78,7 +76,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
 
         datePickerView.setDate(Calendar.getInstance().getTime());
-
+        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));
         //Listeners
         sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,9 +122,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
     @Override
     public void onSuccess(Request request) {
-
         RequestManager.getInstance().getRecomendations(RequestActivity.this, request);
-
     }
 
     @Override
