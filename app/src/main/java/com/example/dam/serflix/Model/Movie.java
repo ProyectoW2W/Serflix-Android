@@ -1,7 +1,7 @@
 package com.example.dam.serflix.Model;
 
 public class Movie {
-    private String title;
+    private String name;
     private String cast;
     private String tags;
     private String poster;
@@ -9,7 +9,7 @@ public class Movie {
     private String year;
 
     public Movie(String title, String cast, String tags, String poster, String description, String year) {
-        this.title = title;
+        this.name = title;
         this.cast = cast;
         this.tags = tags;
         this.poster = poster;
@@ -21,11 +21,11 @@ public class Movie {
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public String getPoster() {

@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dam.serflix.Model.Movie;
 import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.R;
 import com.huxq17.swipecardsview.BaseCardAdapter;
