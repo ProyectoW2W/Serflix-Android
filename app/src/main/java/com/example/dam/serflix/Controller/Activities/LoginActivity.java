@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginCallback, RequestCallback {
+public class LoginActivity extends AppCompatActivity implements LoginCallback {
     EditText username;
     EditText pass;
 
@@ -104,21 +104,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
         intent.putExtra("latlon", latlon);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public void onSuccess(List<Request> requestsList) {
-        System.out.println("success request");
-    }
-
-    @Override
-    public void onSuccess(Request request) {
-
-    }
-
-    @Override
-    public void onSuccessMR(List<MovieRecommendation> movieRecommendations) {
-
     }
 
 

@@ -4,33 +4,54 @@ package com.example.dam.serflix.Model;
  * Created by DAM on 23/2/17.
  */
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Location {
-    private double latitude;
-    private double longitude;
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("state")
+    @Expose
+    private String state;
+    @SerializedName("country")
+    @Expose
+    private String country;
 
-    public Location(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Integer getId() {
+        return id;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public String getCity() {
+        return city;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public String getState() {
+        return state;
     }
 
-    public String getCoordinates(){
-        return this.latitude+","+this.longitude;
+    public void setState(String state) {
+        this.state = state;
     }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
 }

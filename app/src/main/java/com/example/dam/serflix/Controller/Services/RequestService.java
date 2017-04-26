@@ -2,6 +2,7 @@ package com.example.dam.serflix.Controller.Services;
 
 import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
+import com.example.dam.serflix.Model.RequestDTO;
 
 import java.util.List;
 
@@ -18,11 +19,11 @@ import retrofit2.http.Path;
 
 public interface RequestService {
     @POST("api/newrequest")
-    Call<Request> createNewRequest(
+    Call<RequestDTO> createNewRequest(
             @Header("Authorization") String Authorization,
             @Body Request request);
 
-    @GET("/requests/{id}/recommendations")
+    @GET("api/requests/{id}/recommendations")
     Call<List<MovieRecommendation>> getRecomendations(
             @Path("id") Long id,
             @Header("Authorization") String Authorization);

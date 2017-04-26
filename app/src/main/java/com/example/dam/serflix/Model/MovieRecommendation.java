@@ -16,7 +16,7 @@ public class MovieRecommendation implements Serializable {
 
     private Movie movieDTO;
 
-    private Request request;
+    private RequestDTO request;
 
     private Set<Preferences> preferences = new HashSet<>();
 
@@ -54,16 +54,16 @@ public class MovieRecommendation implements Serializable {
         this.movieDTO = movie;
     }
 
-    public Request getRequest() {
+    public RequestDTO getRequest() {
         return request;
     }
 
-    public MovieRecommendation request(Request request) {
+    public MovieRecommendation request(RequestDTO request) {
         this.request = request;
         return this;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(RequestDTO request) {
         this.request = request;
     }
 

@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.dam.serflix.Controller.Services.RequestService;
 import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
+import com.example.dam.serflix.Model.RequestDTO;
 import com.example.dam.serflix.Util.CustomProperties;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class RequestManager {
         return ourInstance;
     }
 
-    public Request getRequest() {
+    public Request  getRequest() {
         return request;
     }
 
@@ -56,10 +57,11 @@ public class RequestManager {
     }
 
     public synchronized void createRequest(final RequestCallback requestCallback, Request request) {
-        Call<Request> call = requestService.createNewRequest(UserLoginManager.getInstance().getBearerToken(), request);
-        call.enqueue(new Callback<Request>() {
+        //CAMBIAR A RequestDTO
+        Call<RequestDTO> call = requestService.createNewRequest(UserLoginManager.getInstance().getBearerToken(), request);
+        call.enqueue(new Callback<RequestDTO>() {
             @Override
-            public void onResponse(Call<Request> call, Response<Request> response) {
+            public void onResponse(Call<RequestDTO> call, Response<RequestDTO> response) {
                 int code = response.code();
 
                 if (code == 200 || code == 201) {
@@ -73,7 +75,7 @@ public class RequestManager {
             }
 
             @Override
-            public void onFailure(Call<Request> call, Throwable t) {
+            public void onFailure(Call<RequestDTO> call, Throwable t) {
                 Log.e("UserManager->", "createUser: " + t);
 
                 requestCallback.onFailure(t);
@@ -81,7 +83,15 @@ public class RequestManager {
         });
     }
 
-    public synchronized void getRecomendations(final RequestCallback requestCallback,long requestId) {
+    public List<MovieRecommendation> getMovieRecommendations() {
+        return movieRecommendations;
+    }
+
+    public void setMovieRecommendations(List<MovieRecommendation> movieRecommendations) {
+        this.movieRecommendations = movieRecommendations;
+    }
+
+    public synchronized void getRecomendations(final RequestCallback requestCallback, long requestId) {
         Call<List<MovieRecommendation>> call = requestService.getRecomendations(requestId,UserLoginManager.getInstance().getBearerToken());
         call.enqueue(new Callback<List<MovieRecommendation>>() {
             @Override
@@ -89,7 +99,6 @@ public class RequestManager {
                 int code = response.code();
 
                 if (code == 200 || code == 201) {
-                    //playerCallback.onSuccess1(apuestas1x2);
                     Log.e("User->", "createUser: OK" + 100);
                         movieRecommendations = response.body();
                         requestCallback.onSuccessMR(movieRecommendations);

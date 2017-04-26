@@ -16,6 +16,7 @@ import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Controller.TimePickerView;
 import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
+import com.example.dam.serflix.Model.RequestDTO;
 import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
@@ -118,7 +119,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
     }
 
     @Override
-    public void onSuccess(Request request) {
+    public void onSuccess(RequestDTO request) {
         //RequestManager.getInstance().getRecomendations(RequestActivity.this, request);
         //Pasar a recommendationActivity
         Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
