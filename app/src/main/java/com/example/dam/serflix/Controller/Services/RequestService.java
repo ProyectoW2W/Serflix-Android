@@ -2,7 +2,6 @@ package com.example.dam.serflix.Controller.Services;
 
 import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
-import com.example.dam.serflix.R;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
@@ -19,7 +17,6 @@ import retrofit2.http.Path;
  */
 
 public interface RequestService {
-
     @POST("api/newrequest")
     Call<Request> createNewRequest(
             @Header("Authorization") String Authorization,

@@ -3,12 +3,12 @@ package com.example.dam.serflix.Controller.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.dam.serflix.Controller.Adapter.CardAdapter;
 import com.example.dam.serflix.Controller.Managers.RequestCallback;
 import com.example.dam.serflix.Controller.Managers.RequestManager;
 import com.example.dam.serflix.Model.Movie;
@@ -29,6 +29,15 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     private List<Movie> movies = new ArrayList<>();
     private int curIndex;
     private Context context;
+    private Handler handler;
+    private long requestId;
+    private Runnable requestRecommendations = new Runnable() {
+        @Override
+        public void run() {
+            RequestManager.getInstance().getRecomendations(RecommendationActivity.this, requestId);
+            handler.postDelayed(this, 100);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         swipeCardsView.retainLastCard(false);
         swipeCardsView.enableSwipe(true);
         context = this.getApplicationContext();
+        requestId = getIntent().getLongExtra("requestId", 0);
         getData();
 
         swipeCardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
@@ -77,25 +87,14 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
             }
         });
+
+        handler = new Handler();
+        handler.postDelayed(requestRecommendations, 5000);
     }
 
+
+
     private void getData() {
-
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    synchronized (this) {
-                        wait(3000);
-                    }
-                } catch (InterruptedException ex) {
-                }
-
-                // TODO              
-            }
-        };
-
-        thread.start();
 
         Movie m1 = new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"); movies.add(m1);
         Movie m2 = new Movie("The Poseidon Adventure","Gene Hackman","Action, Adventure","https://image.tmdb.org/t/p/w1280/3Ypk0OLrECSp7tqQFLMppGBrHfo.jpg","The Poseidon Adventure was one of the first Catastrophe films and began the Disaster Film genre. Director Neame tells the story of a group of people that must fight for their lives aboard a sinking ship. Based on the novel by Paul Gallico.","1972-12-01"); movies.add(m2);
@@ -113,7 +112,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
             mr.setMovieDTO(m);
             movieList.add(mr);
         }
-        List<MovieRecommendation> recommendations = RequestManager.getInstance().getRecomendations(RecommendationActivity.this, RequestManager.getInstance().getRequest());
+        //List<MovieRecommendation> recommendations = RequestManager.getInstance().getRecomendations(RecommendationActivity.this, RequestManager.getInstance().getRequest());
 
         //movieList.add(new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"));
         //movieList.add(new Movie("The Poseidon Adventure","Gene Hackman","Action, Adventure","https://image.tmdb.org/t/p/w1280/3Ypk0OLrECSp7tqQFLMppGBrHfo.jpg","The Poseidon Adventure was one of the first Catastrophe films and began the Disaster Film genre. Director Neame tells the story of a group of people that must fight for their lives aboard a sinking ship. Based on the novel by Paul Gallico.","1972-12-01"));
@@ -126,8 +125,8 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         //movieList.add(new Movie("Spider-Man 3","Tobey Maguire","Action, Fantasy","https://image.tmdb.org/t/p/w1280/uC2pAMjb32NIgQ1GdC1Bl6LZJc2.jpg","The seemingly invincible Spider-Man goes up against an all-new crop of villain – including the shape-shifting Sandman. While Spider-Man’s superpowers are altered by an alien organism, his alter ego, Peter Parker, deals with nemesis Eddie Brock and also gets caught up in a love triangle.","2007-05-01"));
         //movieList.add(new Movie("Secret Beyond the Door","Joan Bennett","Crime, Drama, Thriller","https://image.tmdb.org/t/p/w1280/f2CqQR8DF2I3DvmJFp5lRzRKD30.jpg","Fritz Lang’s psycho thriller tells the story of a woman who marries a stranger with a deadly hobby and through their love he attempts to fight off his obsessive-compulsive actions.","1948-01-01"));
 
-        CardAdapter cardAdapter = new CardAdapter(recommendations, this);
-        swipeCardsView.setAdapter(cardAdapter);
+        //CardAdapter cardAdapter = new CardAdapter(recommendations, this);
+        //swipeCardsView.setAdapter(cardAdapter);
 
     }
 
@@ -143,6 +142,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
     @Override
     public void onSuccessMR(List<MovieRecommendation> movieRecommendations) {
+        Log.d("fernando","successMr");
 
     }
 

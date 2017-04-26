@@ -20,7 +20,6 @@ import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -74,9 +73,9 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        /*datePickerView.setDate(Calendar.getInstance().getTime());
+        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));*/
 
-        datePickerView.setDate(Calendar.getInstance().getTime());
-        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));
         //Listeners
         sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +102,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
                 RequestManager.getInstance().setRequest(request);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);
-                //Pasar a recommendationActivity
-                Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -122,7 +119,11 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
     @Override
     public void onSuccess(Request request) {
-        RequestManager.getInstance().getRecomendations(RequestActivity.this, request);
+        //RequestManager.getInstance().getRecomendations(RequestActivity.this, request);
+        //Pasar a recommendationActivity
+        Intent intent = new Intent(RequestActivity.this, RecommendationActivity.class);
+        intent.putExtra("requestId",request.getId());
+        startActivity(intent);
     }
 
     @Override

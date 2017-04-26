@@ -7,7 +7,6 @@ import com.example.dam.serflix.Model.MovieRecommendation;
 import com.example.dam.serflix.Model.Request;
 import com.example.dam.serflix.Util.CustomProperties;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +81,8 @@ public class RequestManager {
         });
     }
 
-    public synchronized List<MovieRecommendation> getRecomendations(final RequestCallback requestCallback,Request request) {
-        Call<List<MovieRecommendation>> call = requestService.getRecomendations(request.getId(),UserLoginManager.getInstance().getBearerToken());
+    public synchronized void getRecomendations(final RequestCallback requestCallback,long requestId) {
+        Call<List<MovieRecommendation>> call = requestService.getRecomendations(requestId,UserLoginManager.getInstance().getBearerToken());
         call.enqueue(new Callback<List<MovieRecommendation>>() {
             @Override
             public void onResponse(Call<List<MovieRecommendation>> call, Response<List<MovieRecommendation>> response) {
@@ -92,11 +91,9 @@ public class RequestManager {
                 if (code == 200 || code == 201) {
                     //playerCallback.onSuccess1(apuestas1x2);
                     Log.e("User->", "createUser: OK" + 100);
-                    try {
-                        movieRecommendations = call.execute().body();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        movieRecommendations = response.body();
+                        requestCallback.onSuccessMR(movieRecommendations);
+
                 } else {
                     requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
                 }
@@ -109,7 +106,6 @@ public class RequestManager {
                 requestCallback.onFailure(t);
             }
         });
-        return movieRecommendations;
     }
 
 }

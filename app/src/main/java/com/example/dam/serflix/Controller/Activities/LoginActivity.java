@@ -136,9 +136,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback, R
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(android.location.Location location) {
-                //Log.d("Coordenadas", "Latitud = " +location.getLatitude() + " , Longitud = " + location.getLongitude());
+                Log.d("Coordenadas", "Latitud = " +location.getLatitude() + " , Longitud = " + location.getLongitude());
                 latlon = String.valueOf(location.getLatitude()+","+location.getLongitude());
-                //System.out.println(latlon + " --------- latlon1");
+                System.out.println(latlon + " --------- latlon1");
             }
 
             @Override

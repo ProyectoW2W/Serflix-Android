@@ -26,10 +26,6 @@ public class Request {
         this.company = company;
         this.location = location;
     }
-
-
-
-
     public Long getId() {
         return id;
     }
