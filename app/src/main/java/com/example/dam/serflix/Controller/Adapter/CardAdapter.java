@@ -48,7 +48,7 @@ public class CardAdapter extends BaseCardAdapter {
         TextView description = (TextView)cardview.findViewById(R.id.description);
         TextView tags = (TextView)cardview.findViewById(R.id.tags);
         MovieRecommendation mr = movieList.get(position);
-        Picasso.with(context).load(mr.getMovieDTO().getPoster()).into(poster);
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w1280/"+mr.getMovieDTO().getPoster()).into(poster);
         title.setText(mr.getMovieDTO().getTitle());
         year.setText(mr.getMovieDTO().getYear());
         cast.setText(mr.getMovieDTO().getCast());
