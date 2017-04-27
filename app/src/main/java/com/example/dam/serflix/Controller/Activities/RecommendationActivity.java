@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Adapter.CardAdapter;
@@ -32,6 +33,8 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     private int curIndex;
     private Context context;
     private long requestId;
+    private ImageButton likeButton;
+    private ImageButton dislikeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         setContentView(R.layout.activity_recommend);
 
         swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView);
+        likeButton = (ImageButton)findViewById(R.id.likeButton);
+        dislikeButton = (ImageButton)findViewById(R.id.dislikeButton);
+
         swipeCardsView.retainLastCard(false);
         swipeCardsView.enableSwipe(true);
         context = this.getApplicationContext();
@@ -82,10 +88,24 @@ public class RecommendationActivity extends AppCompatActivity implements Request
             }
         });
 
+        dislikeButton.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                Toast.makeText(context, "NO ME GUSTA", Toast.LENGTH_SHORT).show();
+                //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+                recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_DISLIKED);
+            }
+        });
+
+        likeButton.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                Toast.makeText(context, "ME GUSTA", Toast.LENGTH_SHORT).show();
+                //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+                recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_LIKED);
+            }
+        });
+
         RequestManager.getInstance().getRecomendations(RecommendationActivity.this, requestId);
     }
-
-
 
     private void getData() {
 

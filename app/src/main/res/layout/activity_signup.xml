@@ -35,57 +35,61 @@
         android:layout_alignEnd="@+id/editText5" />
 
     <EditText
+        android:id="@+id/editText2"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:layout_marginTop="25dp"
-        android:id="@+id/editText2"
         android:background="@android:color/background_light"
+        android:ems="10"
         android:fontFamily="sans-serif-condensed"
+        android:hint="@string/editName"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
         android:layout_below="@+id/app_name"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/editName" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
+        android:id="@+id/editText4"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif-condensed"
-        android:layout_below="@+id/editText3"
         android:layout_alignLeft="@+id/editText3"
         android:layout_alignStart="@+id/editText3"
+        android:layout_below="@+id/editText3"
         android:layout_marginTop="19dp"
-        android:hint="@string/editPass" />
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="@string/editPass"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp" />
 
     <EditText
+        android:id="@+id/editText5"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="21dp"
-        android:id="@+id/editText5"
-        android:background="@android:color/background_light"
-        android:fontFamily="sans-serif-condensed"
-        android:layout_below="@+id/editText4"
         android:layout_alignLeft="@+id/editText4"
         android:layout_alignStart="@+id/editText4"
-        android:hint="@string/editPasswordCheck" />
+        android:layout_below="@+id/editText4"
+        android:layout_marginTop="21dp"
+        android:background="@android:color/background_light"
+        android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="@string/editPasswordCheck"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp" />
 
     <EditText
+        android:id="@+id/editText3"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:inputType="textEmailAddress"
-        android:ems="10"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_below="@+id/editText2"
         android:layout_marginTop="19dp"
-        android:id="@+id/editText3"
         android:background="@android:color/background_light"
+        android:ems="10"
         android:fontFamily="sans-serif-condensed"
         android:hint="@string/editEmail"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp" />
 </RelativeLayout>
