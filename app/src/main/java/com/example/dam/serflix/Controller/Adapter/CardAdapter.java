@@ -50,7 +50,7 @@ public class CardAdapter extends BaseCardAdapter {
         MovieRecommendation mr = movieList.get(position);
         Picasso.with(context).load("https://image.tmdb.org/t/p/w1280/"+mr.getMovieDTO().getPoster()).into(poster);
         title.setText(mr.getMovieDTO().getTitle());
-        year.setText(mr.getMovieDTO().getYear());
+        year.setText(mr.getMovieDTO().getYear().substring(0,4));
         cast.setText(mr.getMovieDTO().getCast());
         description.setText(mr.getMovieDTO().getDescription());
         tags.setText(mr.getMovieDTO().getTags());
