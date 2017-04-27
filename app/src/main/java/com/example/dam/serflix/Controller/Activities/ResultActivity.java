@@ -24,7 +24,7 @@ public class ResultActivity extends AppCompatActivity {
         final String titleSt = extras.getString("title");
 
         ImageView poster = (ImageView)findViewById(R.id.poster);
-        Picasso.with(context).load(posterSt).into(poster);
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w1280/"+posterSt).into(poster);
         TextView title = (TextView)findViewById(R.id.title);
         title.setText(titleSt);
 
