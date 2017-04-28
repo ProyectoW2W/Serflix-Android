@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/no_title">
-        <activity android:name=".Controller.Activities.LoginActivity">
+        <activity android:name=".Controller.Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
