@@ -2,9 +2,9 @@
 <resources>
     <string-array name="company_array">
         <item>Alone</item>
-        <item>With friends</item>
-        <item>With my partner</item>
-        <item>with family</item>
-        <item>With another User</item>
+        <item>Friends</item>
+        <item>Partner</item>
+        <item>Family</item>
+        <item>Kids</item>
     </string-array>
 </resources>
