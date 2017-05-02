@@ -87,7 +87,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         dislikeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 Toast.makeText(context, "Vista y no me gustó", Toast.LENGTH_SHORT).show();
-                recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_DISLIKED);
+                setRecommendationResult(curIndex, RecomendationResult.WATCHED_DISLIKED);
                 nextMovie(curIndex);
             }
         });
@@ -95,7 +95,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         likeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 Toast.makeText(context, "Vista y me gustó", Toast.LENGTH_SHORT).show();
-                recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_LIKED);
+                setRecommendationResult(curIndex, RecomendationResult.WATCHED_LIKED);
                 nextMovie(curIndex);
             }
         });
@@ -144,7 +144,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     public void acceptMovie(int index){
         Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
         //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
-        recommendations.get(index).setRecomendationResult(RecomendationResult.ACCEPTED);
+        setRecommendationResult(index, RecomendationResult.ACCEPTED);
         Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
         intent.putExtra("poster", recommendations.get(index).getMovieDTO().getPoster());
         intent.putExtra("title", recommendations.get(index).getMovieDTO().getTitle());
@@ -154,13 +154,19 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     public void rejectMovie(int index){
         Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
         //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
-        recommendations.get(index).setRecomendationResult(RecomendationResult.REJECTED);
+        setRecommendationResult(index, RecomendationResult.REJECTED);
         nextMovie(index);
     }
 
     public void nextMovie(int index){
         index++;
         swipeCardsView.notifyDatasetChanged(index);
+    }
+
+    public void setRecommendationResult(int index, RecomendationResult result){
+        MovieRecommendation recommendation = recommendations.get(index);
+        recommendation.setRecomendationResult(result);
+        RequestManager.getInstance().updateRecomendation(this, recommendation);
     }
 
     @Override
