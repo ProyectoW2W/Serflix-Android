@@ -24,23 +24,45 @@
         android:id="@+id/dislikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/swipeCardsView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/swipeCardsView"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="21dp"
         android:background="@null"
-        app:srcCompat="@drawable/dislike" />
+        app:srcCompat="@drawable/dislike"
+        android:layout_marginStart="21dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/notoviewButton"
+        android:layout_toEndOf="@+id/notoviewButton" />
 
     <ImageButton
         android:id="@+id/likeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/swipeCardsView"
-        android:layout_alignRight="@+id/swipeCardsView"
-        android:layout_alignTop="@+id/dislikeButton"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="20dp"
         android:background="@null"
-        app:srcCompat="@drawable/like" />
+        app:srcCompat="@drawable/like"
+        android:layout_marginEnd="20dp"
+        android:layout_alignTop="@+id/dislikeButton"
+        android:layout_toLeftOf="@+id/oktoviewButton"
+        android:layout_toStartOf="@+id/oktoviewButton" />
+
+    <ImageButton
+        android:id="@+id/oktoviewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@drawable/check"
+        android:layout_alignTop="@+id/likeButton"
+        android:layout_alignRight="@+id/swipeCardsView"
+        android:layout_alignEnd="@+id/swipeCardsView" />
+
+    <ImageButton
+        android:id="@+id/notoviewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:srcCompat="@drawable/cross"
+        android:layout_alignTop="@+id/dislikeButton"
+        android:layout_alignLeft="@+id/swipeCardsView"
+        android:layout_alignStart="@+id/swipeCardsView" />
 
 </RelativeLayout>

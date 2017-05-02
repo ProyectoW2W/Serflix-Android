@@ -35,6 +35,8 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     private long requestId;
     private ImageButton likeButton;
     private ImageButton dislikeButton;
+    private ImageButton okToViewButton;
+    private ImageButton noToViewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView);
         likeButton = (ImageButton)findViewById(R.id.likeButton);
         dislikeButton = (ImageButton)findViewById(R.id.dislikeButton);
+        okToViewButton = (ImageButton)findViewById(R.id.oktoviewButton);
+        noToViewButton = (ImageButton)findViewById(R.id.notoviewButton);
 
         swipeCardsView.retainLastCard(false);
         swipeCardsView.enableSwipe(true);
@@ -64,18 +68,10 @@ public class RecommendationActivity extends AppCompatActivity implements Request
             public void onCardVanish(int index, SwipeCardsView.SlideType type) {
                 switch (type) {
                     case LEFT:
-                        Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
-                        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
-                        recommendations.get(index).setRecomendationResult(RecomendationResult.REJECTED);
+                        rejectMovie(index);
                         break;
                     case RIGHT:
-                        Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
-                        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
-                        recommendations.get(index).setRecomendationResult(RecomendationResult.ACCEPTED);
-                        Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
-                        intent.putExtra("poster", recommendations.get(index).getMovieDTO().getPoster());
-                        intent.putExtra("title", recommendations.get(index).getMovieDTO().getTitle());
-                        startActivity(intent);
+                        acceptMovie(index);
                         break;
                 }
             }
@@ -90,19 +86,32 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
         dislikeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "NO ME GUSTA", Toast.LENGTH_SHORT).show();
-                //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+                Toast.makeText(context, "Vista y no me gustó", Toast.LENGTH_SHORT).show();
                 recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_DISLIKED);
+                nextMovie(curIndex);
             }
         });
 
         likeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "ME GUSTA", Toast.LENGTH_SHORT).show();
-                //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+                Toast.makeText(context, "Vista y me gustó", Toast.LENGTH_SHORT).show();
                 recommendations.get(curIndex).setRecomendationResult(RecomendationResult.WATCHED_LIKED);
+                nextMovie(curIndex);
             }
         });
+
+        okToViewButton.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                acceptMovie(curIndex);
+            }
+        });
+
+        noToViewButton.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                rejectMovie(curIndex);
+            }
+        });
+
 
         RequestManager.getInstance().getRecomendations(RecommendationActivity.this, requestId);
     }
@@ -130,6 +139,28 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         CardAdapter cardAdapter = new CardAdapter(recommendations, this);
         swipeCardsView.setAdapter(cardAdapter);
 
+    }
+
+    public void acceptMovie(int index){
+        Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
+        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
+        recommendations.get(index).setRecomendationResult(RecomendationResult.ACCEPTED);
+        Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
+        intent.putExtra("poster", recommendations.get(index).getMovieDTO().getPoster());
+        intent.putExtra("title", recommendations.get(index).getMovieDTO().getTitle());
+        startActivity(intent);
+    }
+
+    public void rejectMovie(int index){
+        Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
+        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
+        recommendations.get(index).setRecomendationResult(RecomendationResult.REJECTED);
+        nextMovie(index);
+    }
+
+    public void nextMovie(int index){
+        index++;
+        swipeCardsView.notifyDatasetChanged(index);
     }
 
     @Override
