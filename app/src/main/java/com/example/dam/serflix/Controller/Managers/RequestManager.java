@@ -117,4 +117,26 @@ public class RequestManager {
         });
     }
 
+    public synchronized void updateRecomendation(final RequestCallback requestCallback, MovieRecommendation recommendation){
+        Call<MovieRecommendation> call = requestService.updateRecomendation(UserLoginManager.getInstance().getBearerToken(), recommendation);
+        call.enqueue(new Callback<MovieRecommendation>() {
+            @Override
+            public void onResponse(Call<MovieRecommendation> call, Response<MovieRecommendation> response) {
+                int code = response.code();
+                if (code == 200 || code == 201) {
+                    Log.e("User->", "updateRecomendation: OK" + 100);
+
+                } else {
+                    requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieRecommendation> call, Throwable t) {
+                Log.e("UserManager->", "updateRecomendation: " + t);
+                requestCallback.onFailure(t);
+            }
+        });
+    }
+
 }

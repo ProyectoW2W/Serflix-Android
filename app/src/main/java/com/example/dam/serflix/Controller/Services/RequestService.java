@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -28,4 +29,8 @@ public interface RequestService {
             @Path("id") Long id,
             @Header("Authorization") String Authorization);
 
+    @PUT("api/movie-recomendations")
+    Call<MovieRecommendation> updateRecomendation(
+            @Header("Authorization") String Authorization,
+            @Body MovieRecommendation recommendation);
 }
