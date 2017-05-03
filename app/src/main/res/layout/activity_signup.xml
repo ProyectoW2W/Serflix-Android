@@ -23,19 +23,19 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Sign Up"
+        android:id="@+id/signBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_below="@+id/editText5"
+        android:layout_alignEnd="@+id/editRPass"
+        android:layout_alignLeft="@+id/editRPass"
+        android:layout_alignRight="@+id/editRPass"
+        android:layout_alignStart="@+id/editRPass"
+        android:layout_below="@+id/editRPass"
         android:layout_marginTop="36dp"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_alignEnd="@+id/editText5" />
+        android:text="Sign Up" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editName"
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
@@ -49,12 +49,12 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editPass"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_below="@+id/editText3"
+        android:layout_alignLeft="@+id/editMail"
+        android:layout_alignStart="@+id/editMail"
+        android:layout_below="@+id/editMail"
         android:layout_marginTop="19dp"
         android:background="@android:color/background_light"
         android:ems="10"
@@ -64,12 +64,12 @@
         android:paddingLeft="10dp" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editRPass"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/editPass"
+        android:layout_alignStart="@+id/editPass"
+        android:layout_below="@+id/editPass"
         android:layout_marginTop="21dp"
         android:background="@android:color/background_light"
         android:ems="10"
@@ -79,12 +79,12 @@
         android:paddingLeft="10dp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editMail"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/editName"
+        android:layout_alignStart="@+id/editName"
+        android:layout_below="@+id/editName"
         android:layout_marginTop="19dp"
         android:background="@android:color/background_light"
         android:ems="10"
