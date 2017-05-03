@@ -1,6 +1,7 @@
 package com.example.dam.serflix.Controller.Activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
@@ -94,6 +95,11 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         usu = "admin";
         password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
+
+        ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Obtaining films, please wait...");
+        progressDialog.show();
     }
 
 

@@ -30,8 +30,6 @@
             android:layout_weight="0.11"
             android:text="@string/companySpinner"
             android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium.Inverse"
-            android:textColor="?android:attr/colorControlNormal"
             android:textSize="24sp" />
 
         <Spinner
@@ -72,15 +70,15 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:text="@string/Titulo"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/textView"
-        android:textSize="60sp"
+        android:text="@string/Titulo"
         android:textAlignment="center"
-        android:textColor="?android:attr/colorPrimaryDark"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textSize="60sp"
         android:textStyle="normal|bold" />
 
 </RelativeLayout>
