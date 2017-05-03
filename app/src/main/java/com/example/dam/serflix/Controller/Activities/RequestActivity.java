@@ -1,5 +1,6 @@
 package com.example.dam.serflix.Controller.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -94,16 +95,16 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 String fechaStr = formatter.format(tiempo);
                 String timeNow = formatter.format(Calendar.getInstance().getTime());
 
-//                if(timeNow==null){
-//                    timePickerView.setTime(Time.valueOf(formatter.format(tiempo)));
-//                }
-
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
                 Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
                 RequestManager.getInstance().setRequest(request);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);
 
+                ProgressDialog progressDialog = new ProgressDialog(RequestActivity.this);
+                progressDialog.setTitle("Loading");
+                progressDialog.setMessage("Obtaining films, please wait...");
+                progressDialog.show();
             }
         });
     }
