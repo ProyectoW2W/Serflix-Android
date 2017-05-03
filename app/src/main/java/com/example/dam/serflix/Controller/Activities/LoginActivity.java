@@ -91,8 +91,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     private void attemptLogin() {
         String usu = username.getText().toString();
         String password = pass.getText().toString();
-        usu = "admin";
-        password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
     }
 
