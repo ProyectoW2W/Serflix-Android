@@ -16,4 +16,5 @@
     <string name="datePickerView">Which day?</string>
     <string name="companySpinner">With who?</string>
     <string name="getRecommendations">Get recommendations</string>
+    <string name="error_field_required">The field is required.</string>
 </resources>
