@@ -60,8 +60,10 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         Button login_btn = (Button) findViewById(R.id.login_btn);
         login_btn.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                if (username.getText().toString().equals("")|| pass.getText().toString().equals("") )
+                if (username.getText().toString().equals("")|| pass.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Login is null", Toast.LENGTH_LONG).show();
                     System.out.println("LOGIN NULL");
+                }
                 else {
                     attemptLogin();
                 }
@@ -76,24 +78,11 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
                 startActivity(intent);
             }
         });
-
-        Button request_btn = (Button) findViewById(R.id.request_btn);
-        request_btn.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
-
-                //PASAMOS A REQUEST ACTIVITY LOS DATOS!!!!!!
-                Intent intent = new Intent(LoginActivity.this, RequestActivity.class);
-                intent.putExtra("latlon", latlon);
-                startActivity(intent);
-            }
-        });
     }
 
     private void attemptLogin() {
         String usu = username.getText().toString();
         String password = pass.getText().toString();
-        usu = "admin";
-        password = "admin";
         UserLoginManager.getInstance().performLogin(usu, password, LoginActivity.this);
 
         ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
@@ -116,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     @Override
     public void onFailure(Throwable t) {
         Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
-        Toast.makeText(this, "Credenciales incorectos", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Credenciales incorrectos", Toast.LENGTH_LONG).show();
     }
 
 

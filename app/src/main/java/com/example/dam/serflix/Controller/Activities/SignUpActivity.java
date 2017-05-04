@@ -32,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity implements RegisterCallbac
         setContentView(R.layout.activity_signup);
 
         username = (EditText) findViewById(R.id.editName);
-        mail = (EditText) findViewById(R.id.editEmail);
+        mail = (EditText) findViewById(R.id.editMail);
         pass = (EditText) findViewById(R.id.editPass);
         pass2 = (EditText) findViewById(R.id.editRPass);
 
