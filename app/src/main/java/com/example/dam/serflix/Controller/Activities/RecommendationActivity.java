@@ -109,6 +109,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         noToViewButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 rejectMovie(curIndex);
+                nextMovie(curIndex);
             }
         });
 
@@ -155,7 +156,6 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
         //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
         setRecommendationResult(index, RecomendationResult.REJECTED);
-        nextMovie(index);
     }
 
     public void nextMovie(int index){
