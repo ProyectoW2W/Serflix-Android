@@ -2,6 +2,7 @@ package com.example.dam.serflix.Controller.Services;
 
 import com.example.dam.serflix.Model.UserDTO;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -11,8 +12,8 @@ import retrofit2.http.POST;
  */
 
 public interface RegisterService {
-    @POST("/api/users")
-    Call<Void> registerAccount(
+    @POST("/api/register/app")
+    Call<ResponseBody> registerAccount(
             @Body UserDTO userDTO
     );
 }

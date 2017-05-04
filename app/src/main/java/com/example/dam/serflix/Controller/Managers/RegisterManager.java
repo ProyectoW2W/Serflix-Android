@@ -7,6 +7,7 @@ import com.example.dam.serflix.Controller.Services.RegisterService;
 import com.example.dam.serflix.Model.UserDTO;
 import com.example.dam.serflix.Util.CustomProperties;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,10 +49,10 @@ public class RegisterManager {
     /* POST - REGISTER ACCOUNT */
 
     public synchronized void registerAccount(final RegisterCallback registerCallback, UserDTO userDTO) {
-        Call<Void> call = registerService.registerAccount(userDTO);
-        call.enqueue(new Callback<Void>() {
+        Call<ResponseBody> call = registerService.registerAccount(userDTO);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 int code = response.code();
 
                 if (code == 200 || code == 201) {
@@ -63,8 +64,8 @@ public class RegisterManager {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-//                registerCallback.onFailure(t);
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                registerCallback.onFailure(t);
             }
         });
     }
