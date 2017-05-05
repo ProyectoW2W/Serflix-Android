@@ -98,16 +98,14 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
-                if (!latlon.isEmpty()){
-                    Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
-                    RequestManager.getInstance().setRequest(request);
-                    RequestManager.getInstance().createRequest(RequestActivity.this, request);
-                }
+                Request request;
                 if (latlon.isEmpty()){
-                    Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon0);
-                    RequestManager.getInstance().setRequest(request);
-                    RequestManager.getInstance().createRequest(RequestActivity.this, request);
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon0);
+                }else{
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
                 }
+                RequestManager.getInstance().setRequest(request);
+                RequestManager.getInstance().createRequest(RequestActivity.this, request);
 
                 ProgressDialog progressDialog = new ProgressDialog(RequestActivity.this);
                 progressDialog.setTitle("Loading");
