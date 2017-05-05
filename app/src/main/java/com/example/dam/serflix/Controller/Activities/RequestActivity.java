@@ -65,6 +65,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
         Bundle extras = getIntent().getExtras();
         final String latlon = extras.getString("latlon");
+        final String latlon0 = "40.714224,-73.961452";
         System.out.println(latlon);
 
 
@@ -97,9 +98,16 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
                 //Enviar request
                 //Type type, String viewDate, String creationDate, Company company, String location
-                Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
-                RequestManager.getInstance().setRequest(request);
-                RequestManager.getInstance().createRequest(RequestActivity.this, request);
+                if (!latlon.isEmpty()){
+                    Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
+                    RequestManager.getInstance().setRequest(request);
+                    RequestManager.getInstance().createRequest(RequestActivity.this, request);
+                }
+                if (latlon.isEmpty()){
+                    Request request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon0);
+                    RequestManager.getInstance().setRequest(request);
+                    RequestManager.getInstance().createRequest(RequestActivity.this, request);
+                }
 
                 ProgressDialog progressDialog = new ProgressDialog(RequestActivity.this);
                 progressDialog.setTitle("Loading");

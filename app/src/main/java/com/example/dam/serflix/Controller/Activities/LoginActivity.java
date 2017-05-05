@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
 
         ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Obtaining films, please wait...");
+        progressDialog.setMessage("Login, please wait...");
         progressDialog.show();
     }
 
