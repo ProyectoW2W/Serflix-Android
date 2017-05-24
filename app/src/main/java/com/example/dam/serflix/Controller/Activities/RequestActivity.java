@@ -22,6 +22,7 @@ import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,8 +77,8 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        /*datePickerView.setDate(Calendar.getInstance().getTime());
-        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));*/
+//        datePickerView.setDate(Calendar.getInstance().getTime());
+//        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));
 
         //Listeners
         sendRequestButton.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_weight="0.14"
-            android:text="Serflix"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="80dp"

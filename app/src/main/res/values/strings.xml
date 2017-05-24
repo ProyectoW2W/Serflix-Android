@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name" translatable="false">Serflix</string>
+    <string name="app_name" translatable="false">Passflix</string>
     <string name="signUpBtn">Sign Up</string>
     <string name="SignUpText">Not registered yet?</string>
     <string name="login_btn">Sign In</string>
     <string name="editEmail">Email</string>
     <string name="editPass">Password</string>
-    <string name="Titulo" translatable="false">Serflix</string>
+    <string name="Titulo" translatable="false">Passflix</string>
     <string name="dish_pick">Choose your company</string>
     <string name="textCompany">Company?</string>
     <string name="textDate">Date?</string>

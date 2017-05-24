@@ -57,15 +57,16 @@ public class RegisterManager {
 
                 if (code == 200 || code == 201) {
                     Toast.makeText(context, "User created", Toast.LENGTH_LONG);
+                    registerCallback.onSuccessRegister();
 
                 } else {
-                    registerCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                    registerCallback.onFailureRegister(new Throwable("ERROR" + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                registerCallback.onFailure(t);
+                registerCallback.onFailureRegister(t);
             }
         });
     }

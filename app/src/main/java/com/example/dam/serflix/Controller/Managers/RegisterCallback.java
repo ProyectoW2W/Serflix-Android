@@ -5,6 +5,6 @@ package com.example.dam.serflix.Controller.Managers;
  */
 
 public interface RegisterCallback {
-    void onSuccess();
-    void onFailure(Throwable t);
+    void onSuccessRegister();
+    void onFailureRegister(Throwable t);
 }

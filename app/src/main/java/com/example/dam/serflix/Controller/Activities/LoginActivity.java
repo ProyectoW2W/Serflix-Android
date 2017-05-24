@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         sign_btn.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                intent.putExtra("latlon", latlon);
                 startActivity(intent);
             }
         });
@@ -90,7 +91,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         progressDialog.setMessage("Login, please wait...");
         progressDialog.show();
     }
-
 
     @Override
     public void onSuccess(UserToken userToken) {
