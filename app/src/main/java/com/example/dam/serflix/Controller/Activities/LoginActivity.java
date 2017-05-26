@@ -30,17 +30,23 @@ import com.example.dam.serflix.Model.UserToken;
 import com.example.dam.serflix.Model.enumeration.Company;
 import com.example.dam.serflix.Model.enumeration.Type;
 import com.example.dam.serflix.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.Date;
 import java.util.List;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginCallback {
+public class LoginActivity extends AppCompatActivity implements LoginCallback,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     EditText username;
     EditText pass;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
+    protected GoogleApiClient mGoogleApiClient;
+    protected android.location.Location mLastLocation;
     String latlon = "";
 
     @Override
@@ -51,15 +57,12 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         username = (EditText) findViewById(R.id.editEmail);
         pass = (EditText) findViewById(R.id.editPass);
 
-        //Obtenemos latitud y longitud al iniciar la aplicacion para poderla obtener mas rapidamente y poder pasarla correctamente a RequestActivity!!!!!!!
-        //HAY QUE LLAMAR DOS VECES A ObtainLatLon PARA QUE RELLENE CON LATLON Y NO PETE EL LOCATION MANAGER
         locationManager = (LocationManager) getSystemService((LOCATION_SERVICE));
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(android.location.Location location) {
                 Log.d("Coordenadas", "Latitud = " + location.getLatitude() + " , Longitud = " + location.getLongitude());
                 latlon = String.valueOf(location.getLatitude() + "," + location.getLongitude());
-                System.out.println(latlon + " --------- latlon1");
             }
 
             @Override
@@ -118,6 +121,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
                 startActivity(intent);
             }
         });
+        if (latlon.isEmpty()){
+            buildGoogleApiClient();
+        }
     }
 
     private void attemptLogin() {
@@ -129,6 +135,51 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         progressDialog.setTitle("Loading");
         progressDialog.setMessage("Login, please wait...");
         progressDialog.show();
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            latlon = String.valueOf(mLastLocation.getLatitude() + "," + mLastLocation.getLongitude());
+            //Toast.makeText(this, latlon, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Last connection not finded.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        Log.i("LoginActivity", "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+    }
+
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        Log.i("LoginActivity", "Connection suspended");
+        mGoogleApiClient.connect();
     }
 
     @Override
@@ -144,7 +195,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     @Override
     public void onFailure(Throwable t) {
         Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
-        Toast.makeText(this, "Credenciales incorrectos", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Incorrect User.", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -152,7 +203,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         switch (requestCode){
             case 10:
                 if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    //configureButton();
                 return;
         }
     }

@@ -66,7 +66,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
 
         Bundle extras = getIntent().getExtras();
         final String latlon = extras.getString("latlon");
-        final String latlon0 = "40.714224,-73.961452";
+        final String latlon0 = "41.472488,1.984409";
         System.out.println(latlon);
 
 
