@@ -41,7 +41,8 @@ public class ResultActivity extends AppCompatActivity {
                 String url = "https://play.google.com/store/search?q="+titleSt+"&c=movies&hl=en";
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + titleSt)));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q="+titleSt)));
+
                 } catch (android.content.ActivityNotFoundException anfe) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                 }
