@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
 
             }
 
+
             @Override
             public void onProviderDisabled(String provider) {
                 boolean gps_enabled = false;
