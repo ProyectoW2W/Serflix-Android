@@ -53,7 +53,8 @@
             android:layout_alignLeft="@+id/editEmail"
             android:layout_alignStart="@+id/editEmail"
             android:layout_below="@+id/editEmail"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="0.15"
             android:background="@android:color/white"
             android:ems="10"
@@ -62,6 +63,18 @@
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/signUp_btn"
+            android:layout_alignLeft="@+id/editPass"
+            android:layout_alignStart="@+id/editPass"
+            android:layout_marginBottom="21dp"
+            android:layout_weight="0.16"
+            android:text="@string/login_btn"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -98,16 +111,12 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/login_btn"
+        <TextView
+            android:id="@+id/textLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/signUp_btn"
-            android:layout_alignLeft="@+id/editPass"
-            android:layout_alignStart="@+id/editPass"
-            android:layout_marginBottom="21dp"
-            android:layout_weight="0.16"
-            android:text="@string/login_btn"
+            android:layout_weight="0.14"
+            android:text="Visita nuestra web!"
             android:textAlignment="center" />
 
     </LinearLayout>

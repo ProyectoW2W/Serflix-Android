@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -114,6 +115,8 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
 
         TextView sign_btn = (TextView) findViewById(R.id.signUp_btn);
 
+        TextView link = (TextView) findViewById(R.id.textLink);
+
         sign_btn.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
@@ -121,6 +124,24 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
                 startActivity(intent);
             }
         });
+
+
+        //link web
+        link.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                String url = "http://www.marca.com/";
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                }
+            }
+        });
+
+
+
+
         if (latlon.isEmpty()){
             buildGoogleApiClient();
         }
