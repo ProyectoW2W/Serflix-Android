@@ -84,13 +84,15 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
 
                 try {
                     gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                } catch(Exception ex) {}
+                } catch (Exception ex) {
+                }
 
                 try {
                     network_enabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                } catch(Exception ex) {}
+                } catch (Exception ex) {
+                }
 
-                if(!gps_enabled && !network_enabled) {
+                if (!gps_enabled && !network_enabled) {
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(intent);
                 }
@@ -101,25 +103,36 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
 
+
         Button login_btn = (Button) findViewById(R.id.login_btn);
-        login_btn.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
-                if (username.getText().toString().equals("")|| pass.getText().toString().equals("")) {
+        TextView sign_btn = (TextView) findViewById(R.id.signUp_btn);
+
+        sign_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                intent.putExtra("latlon", latlon);
+                startActivity(intent);
+            }
+        });
+
+        login_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (username.getText().toString().equals("") || pass.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Login is null", Toast.LENGTH_LONG).show();
                     System.out.println("LOGIN NULL");
-                }
-                else {
+                } else {
                     attemptLogin();
                 }
             }
         });
 
-        TextView sign_btn = (TextView) findViewById(R.id.signUp_btn);
-
         TextView link = (TextView) findViewById(R.id.textLink);
 
-        sign_btn.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
+        sign_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 intent.putExtra("latlon", latlon);
                 startActivity(intent);
@@ -128,8 +141,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
 
 
         //link web
-        link.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 String url = "http://www.marca.com/";
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
@@ -141,9 +155,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
         });
 
 
-
-
-        if (latlon.isEmpty()){
+        if (latlon.isEmpty()) {
             buildGoogleApiClient();
         }
     }
@@ -222,10 +234,10 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
+        switch (requestCode) {
             case 10:
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                return;
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    return;
         }
     }
 }
