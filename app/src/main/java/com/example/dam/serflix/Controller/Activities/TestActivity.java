@@ -42,6 +42,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+
         swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView);
         likeButton = (ImageButton)findViewById(R.id.likeButton);
         dislikeButton = (ImageButton)findViewById(R.id.dislike);
