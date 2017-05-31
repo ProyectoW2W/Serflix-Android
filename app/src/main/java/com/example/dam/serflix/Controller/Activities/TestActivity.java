@@ -53,6 +53,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
         requestId = getIntent().getLongExtra("requestId", 0);
         //getData();
 
+
         swipeCardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
             @Override
             //METODO PARA CUANDO SE ESTA MOSTRANDO LA TARJETA.
