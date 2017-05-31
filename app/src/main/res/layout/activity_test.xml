@@ -22,47 +22,36 @@
 
     <ImageButton
         android:id="@+id/dontknow"
+        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/interrogante"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/dislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="26dp"
         android:layout_marginLeft="21dp"
-        android:background="@null"
-        app:srcCompat="@drawable/dislike"
         android:layout_marginStart="21dp"
-        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/notoviewButton"
         android:layout_toRightOf="@+id/notoviewButton"
-        android:layout_toEndOf="@+id/notoviewButton" />
+        android:background="@null"
+        app:srcCompat="@drawable/dislike" />
 
     <ImageButton
         android:id="@+id/likeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
         android:background="@null"
         app:srcCompat="@drawable/like"
-        android:layout_marginEnd="20dp"
-        android:layout_alignTop="@+id/dontknow"
-        android:layout_toLeftOf="@+id/oktoviewButton"
-        android:layout_toStartOf="@+id/oktoviewButton" />
-
-    <ImageButton
-        android:id="@+id/oktoviewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:srcCompat="@drawable/check"
-        android:layout_alignTop="@+id/likeButton"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignTop="@+id/dislike"
         android:layout_alignRight="@+id/swipeCardsView"
         android:layout_alignEnd="@+id/swipeCardsView" />
-
-    <ImageButton
-        android:id="@+id/notoviewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        app:srcCompat="@drawable/cross"
-        android:layout_alignTop="@+id/dontknow"
-        android:layout_alignLeft="@+id/swipeCardsView"
-        android:layout_alignStart="@+id/swipeCardsView" />
 
 </RelativeLayout>

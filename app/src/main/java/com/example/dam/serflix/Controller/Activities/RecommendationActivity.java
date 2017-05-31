@@ -45,7 +45,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
         swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView);
         likeButton = (ImageButton)findViewById(R.id.likeButton);
-        dislikeButton = (ImageButton)findViewById(R.id.dislikeButton);
+        dislikeButton = (ImageButton)findViewById(R.id.dontknow);
         okToViewButton = (ImageButton)findViewById(R.id.oktoviewButton);
         noToViewButton = (ImageButton)findViewById(R.id.notoviewButton);
 
