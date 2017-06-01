@@ -101,9 +101,9 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 //Type type, String viewDate, String creationDate, Company company, String location
                 Request request;
                 if (latlon.isEmpty()){
-                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon0);
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ANOTHER_USER, latlon0);
                 }else{
-                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ALONE, latlon);
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ANOTHER_USER, latlon);
                 }
                 RequestManager.getInstance().setRequest(request);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);

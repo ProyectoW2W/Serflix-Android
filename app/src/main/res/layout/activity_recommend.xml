@@ -7,6 +7,9 @@
     android:background="@null"
     tools:context="com.example.dam.serflix.Controller.Activities.RecommendationActivity">
 
+    //ELIMINAR ESTE COMENTARIO
+
+
     <com.huxq17.swipecardsview.SwipeCardsView
         android:id="@+id/swipeCardsView"
         android:layout_width="match_parent"
