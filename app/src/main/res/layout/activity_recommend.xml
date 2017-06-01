@@ -52,8 +52,8 @@
         android:background="@null"
         app:srcCompat="@drawable/check"
         android:layout_alignTop="@+id/likeButton"
-        android:layout_alignRight="@+id/swipeCardsView"
-        android:layout_alignEnd="@+id/swipeCardsView" />
+        android:layout_alignRight="@+id/swipeCardsView2"
+        android:layout_alignEnd="@+id/swipeCardsView2" />
 
     <ImageButton
         android:id="@+id/notoviewButton"
@@ -62,7 +62,7 @@
         android:background="@null"
         app:srcCompat="@drawable/cross"
         android:layout_alignTop="@+id/dontknow"
-        android:layout_alignLeft="@+id/swipeCardsView"
-        android:layout_alignStart="@+id/swipeCardsView" />
+        android:layout_alignLeft="@+id/swipeCardsView2"
+        android:layout_alignStart="@+id/swipeCardsView2" />
 
 </RelativeLayout>

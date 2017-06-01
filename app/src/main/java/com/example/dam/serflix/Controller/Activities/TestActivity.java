@@ -43,7 +43,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
         setContentView(R.layout.activity_test);
 
 
-        swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView);
+        swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView2);
         likeButton = (ImageButton)findViewById(R.id.likeButton);
         dislikeButton = (ImageButton)findViewById(R.id.dislike);
         dontknow = (ImageButton)findViewById(R.id.dontknow);
@@ -51,8 +51,8 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
         swipeCardsView.retainLastCard(false);
         swipeCardsView.enableSwipe(true);
         context = this.getApplicationContext();
-        requestId = getIntent().getLongExtra("requestId", 0);
-        //getData();
+        //requestId = getIntent().getLongExtra("requestId", 0);
+        getData();
 
 
         swipeCardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
@@ -110,7 +110,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 
 
 
-        RequestManager.getInstance().getRecomendations(TestActivity.this, requestId);
+//        RequestManager.getInstance().getRecomendations(TestActivity.this, requestId);
     }
 
     private void getData() {
@@ -131,9 +131,9 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
             mr.setMovieDTO(m);
             movieList.add(mr);
         }
-        recommendations = RequestManager.getInstance().getMovieRecommendations();
+        //recommendations = RequestManager.getInstance().getMovieRecommendations();
 
-        CardAdapter cardAdapter = new CardAdapter(recommendations, this);
+        CardAdapter cardAdapter = new CardAdapter(movieList, this);
         swipeCardsView.setAdapter(cardAdapter);
 
     }
