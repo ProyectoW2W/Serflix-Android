@@ -10,6 +10,9 @@
     </style>
 
     <style name="company_btn">Choose your company</style>
-
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/wallet_holo_blue_light </item>
+        <item name="colorButtonNormal">@color/cardview_dark_background </item>
+    </style>
 
 </resources>

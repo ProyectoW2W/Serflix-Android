@@ -67,21 +67,25 @@
 
         <Button
             android:id="@+id/login_btn"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/signUp_btn"
             android:layout_alignLeft="@+id/editPass"
             android:layout_alignStart="@+id/editPass"
             android:layout_marginBottom="21dp"
-            android:layout_weight="0.16"
+            android:background="@drawable/boton_redondo"
+            android:elevation="20dp"
+
             android:text="@string/login_btn"
-            android:textAlignment="center" />
+
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="0.14"
             android:orientation="horizontal">
 
             <TextView
@@ -95,6 +99,7 @@
                 android:layout_weight="1"
                 android:text="@string/SignUpText"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
             <TextView
@@ -115,11 +120,23 @@
             android:id="@+id/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.14"
             android:layout_marginLeft="121dp"
             android:text="Visita nuestra web!"
             android:textAlignment="center" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginRight="234dp"
+        android:layout_weight="0.14"
+        android:text="test" />
 
 </RelativeLayout>

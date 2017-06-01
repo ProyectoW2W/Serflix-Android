@@ -1,9 +1,12 @@
 package com.example.dam.serflix.Controller.Activities;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -62,12 +65,20 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
         datePickerView = (DatePickerView) findViewById(R.id.datePickerView);
         timePickerView = (TimePickerView) findViewById(R.id.timePickerView);
         companySpinner = (Spinner) findViewById(R.id.companySpinner);
+
         sendRequestButton = (Button) findViewById(R.id.sendRequestButton);
 
         Bundle extras = getIntent().getExtras();
         final String latlon = extras.getString("latlon");
         final String latlon0 = "41.472488,1.984409";
         System.out.println(latlon);
+
+
+
+
+
+
+
 
 
         //Establecer valores Company Spinner
