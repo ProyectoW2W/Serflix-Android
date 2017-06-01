@@ -5,14 +5,11 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackground">@color/background_material_light</item>
-        <item name="colorAccent">@android:color/black</item>
+        <item name="colorAccent">@color/common_signin_btn_light_text_default</item>
         <item name="colorPrimaryDark">@color/background_material_dark</item>
     </style>
 
     <style name="company_btn">Choose your company</style>
-    <style name="MyButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/wallet_holo_blue_light </item>
-        <item name="colorButtonNormal">@color/cardview_dark_background </item>
-    </style>
+
 
 </resources>
