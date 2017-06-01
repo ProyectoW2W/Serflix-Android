@@ -10,9 +10,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.DatePickerView;
 import com.example.dam.serflix.Controller.Managers.RequestCallback;
@@ -33,7 +35,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
-public class RequestActivity extends AppCompatActivity implements RequestCallback {
+public class RequestActivity extends AppCompatActivity implements RequestCallback, AdapterView.OnItemSelectedListener {
 
 
     private Button sendRequestButton;
@@ -49,7 +51,7 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
     //private LocationGetter.LocationResult locationResult;
     private boolean gpsEnabled = false;
     private boolean networkEnabled = false;
-
+    private Company company;
 
 
     Spinner companySpinner;
@@ -74,19 +76,15 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
         System.out.println(latlon);
 
 
-
-
-
-
-
-
-
         //Establecer valores Company Spinner
         Spinner spinner = (Spinner) findViewById(R.id.companySpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.company_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
 
 //        datePickerView.setDate(Calendar.getInstance().getTime());
 //        timePickerView.setTime(new Time(Calendar.getInstance().getTime().getTime()));
@@ -112,9 +110,9 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
                 //Type type, String viewDate, String creationDate, Company company, String location
                 Request request;
                 if (latlon.isEmpty()){
-                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ANOTHER_USER, latlon0);
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, company, latlon0);
                 }else{
-                    request = new Request(Type.MOVIE, fechaStr, timeNow, Company.ANOTHER_USER, latlon);
+                    request = new Request(Type.MOVIE, fechaStr, timeNow, company, latlon);
                 }
                 RequestManager.getInstance().setRequest(request);
                 RequestManager.getInstance().createRequest(RequestActivity.this, request);
@@ -149,5 +147,31 @@ public class RequestActivity extends AppCompatActivity implements RequestCallbac
     @Override
     public void onFailure(Throwable t) {
 
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                company = Company.ALONE;
+                break;
+            case 1:
+                company = Company.FRIENDS;
+                break;
+            case 2:
+                company = Company.PARTNER;
+                break;
+            case 3:
+                company = Company.FAMILY;
+                break;
+            case 4:
+                company = Company.ANOTHER_USER;
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        company = Company.ALONE;
     }
 }
