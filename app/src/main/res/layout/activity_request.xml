@@ -41,6 +41,7 @@
             android:layout_marginBottom="20dp"
             android:layout_weight="0.11"
             android:popupBackground="@color/cardview_light_background"
+            android:spinnerMode="dialog"
             android:textAlignment="center" />
 
         <view
