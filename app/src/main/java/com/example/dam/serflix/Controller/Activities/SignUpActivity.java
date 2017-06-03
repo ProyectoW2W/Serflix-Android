@@ -129,7 +129,7 @@ public class SignUpActivity extends AppCompatActivity implements RegisterCallbac
     @Override
     public void onSuccess(UserToken userToken) {
 
-        Intent intent = new Intent(SignUpActivity.this, RequestActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, TestActivity.class);
         intent.putExtra("latlon", coord);
         startActivity(intent);
         finish();

@@ -107,16 +107,6 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
         TextView sign_btn = (TextView) findViewById(R.id.signUp_btn);
 
 
-        Button test = (Button) findViewById(R.id.test);
-    // Mando al test con un boton extra para comprovar si funciona
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
-                startActivity(intent);
-            }
-        });
-
         sign_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
