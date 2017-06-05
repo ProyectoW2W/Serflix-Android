@@ -52,7 +52,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
         swipeCardsView.enableSwipe(true);
         context = this.getApplicationContext();
         requestId = getIntent().getLongExtra("requestId", 0);
-        getData();
+        //getData();
 
 
         swipeCardsView.setCardsSlideListener(new SwipeCardsView.CardsSlideListener() {
