@@ -14,7 +14,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -116,6 +118,9 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
             }
         });
 
+        /**
+         * Login desde el boton
+         */
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,9 +133,30 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
             }
         });
 
+        /**
+         * login desde la tecla intro del teclado del movil
+         */
+        pass.setImeActionLabel("Pass?", KeyEvent.KEYCODE_ENTER);
+        pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == EditorInfo.IME_NULL || (keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (id == EditorInfo.IME_ACTION_DONE)) {
+                    if (username.getText().toString().equals("") || pass.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "Login is null", Toast.LENGTH_LONG).show();
+                        System.out.println("LOGIN NULL");
+                    } else {
+                        attemptLogin();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         TextView link = (TextView) findViewById(R.id.textLink);
 
         sign_btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
