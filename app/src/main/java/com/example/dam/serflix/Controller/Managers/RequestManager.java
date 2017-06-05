@@ -91,6 +91,32 @@ public class RequestManager {
         this.movieRecommendations = movieRecommendations;
     }
 
+    public synchronized void getTestRecomendations(final RequestCallback requestCallback) {
+        Call<List<MovieRecommendation>> call = requestService.getTestRecomendations(UserLoginManager.getInstance().getBearerToken());
+        call.enqueue(new Callback<List<MovieRecommendation>>() {
+            @Override
+            public void onResponse(Call<List<MovieRecommendation>> call, Response<List<MovieRecommendation>> response) {
+                int code = response.code();
+
+                if (code == 200 || code == 201) {
+                    Log.e("User->", "createUser: OK" + 100);
+                    movieRecommendations = response.body();
+                    requestCallback.onSuccessMR(movieRecommendations);
+
+                } else {
+                    requestCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MovieRecommendation>> call, Throwable t) {
+                Log.e("UserManager->", "createUser: " + t);
+
+                requestCallback.onFailure(t);
+            }
+        });
+    }
+
     public synchronized void getRecomendations(final RequestCallback requestCallback, long requestId) {
         Call<List<MovieRecommendation>> call = requestService.getRecomendations(requestId,UserLoginManager.getInstance().getBearerToken());
         call.enqueue(new Callback<List<MovieRecommendation>>() {

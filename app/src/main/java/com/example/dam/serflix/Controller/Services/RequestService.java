@@ -33,4 +33,8 @@ public interface RequestService {
     Call<MovieRecommendation> updateRecomendation(
             @Header("Authorization") String Authorization,
             @Body MovieRecommendation recommendation);
+
+    @GET("api/movie-recomendation/test-inicial")
+    Call<List<MovieRecommendation>> getTestRecomendations(
+            @Header("Authorization") String Authorization);
 }

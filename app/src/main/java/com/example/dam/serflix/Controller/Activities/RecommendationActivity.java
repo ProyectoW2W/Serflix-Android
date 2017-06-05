@@ -117,14 +117,6 @@ public class RecommendationActivity extends AppCompatActivity implements Request
         RequestManager.getInstance().getRecomendations(RecommendationActivity.this, requestId);
     }
 
-
-
-
-    //ELIMINAR ESTE COMENTARIO
-
-
-
-
     private void getData() {
 
 //        Movie m1 = new Movie("Fight Club","Brad Pitt","Drama","https://image.tmdb.org/t/p/w1280/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg","A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.","1999-10-15"); movies.add(m1);
