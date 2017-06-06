@@ -184,7 +184,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback,
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://www.marca.com/";
+                String url = "http://178.33.138.17/passflix/";
                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
