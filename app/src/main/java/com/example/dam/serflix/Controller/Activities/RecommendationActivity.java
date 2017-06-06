@@ -86,7 +86,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
         dislikeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "Vista y no me gustó", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "DISLIKE", Toast.LENGTH_SHORT).show();
                 setRecommendationResult(curIndex, RecomendationResult.WATCHED_DISLIKED);
                 nextMovie(curIndex);
             }
@@ -94,7 +94,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
 
         likeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "Vista y me gustó", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "LIKE", Toast.LENGTH_SHORT).show();
                 setRecommendationResult(curIndex, RecomendationResult.WATCHED_LIKED);
                 nextMovie(curIndex);
             }
@@ -143,7 +143,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     }
 
     public void acceptMovie(int index){
-        Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "ACCEPTED", Toast.LENGTH_SHORT).show();
         //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
         setRecommendationResult(index, RecomendationResult.ACCEPTED);
         Intent intent = new Intent(RecommendationActivity.this, ResultActivity.class);
@@ -153,7 +153,7 @@ public class RecommendationActivity extends AppCompatActivity implements Request
     }
 
     public void rejectMovie(int index){
-        Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "REFUSED", Toast.LENGTH_SHORT).show();
         //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
         setRecommendationResult(index, RecomendationResult.REJECTED);
     }

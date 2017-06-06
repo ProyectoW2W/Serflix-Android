@@ -1,5 +1,6 @@
 package com.example.dam.serflix.Controller.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,12 +37,16 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
     private ImageButton likeButton;
     private ImageButton dislikeButton;
     private ImageButton dontknow;
+    private String coord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        Bundle extras = getIntent().getExtras();
+        final String latlon = extras.getString("latlon");
+        coord = latlon;
 
         swipeCardsView = (SwipeCardsView)findViewById(R.id.swipeCardsView2);
         likeButton = (ImageButton)findViewById(R.id.likeButton);
@@ -68,10 +73,10 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
             public void onCardVanish(int index, SwipeCardsView.SlideType type) {
                 switch (type) {
                     case LEFT:
-                        rejectMovie(index);
+                        dislikeMovie(index);
                         break;
                     case RIGHT:
-                        acceptMovie(index);
+                        likeMovie(index);
                         break;
                 }
             }
@@ -86,7 +91,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 
         dislikeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "Vista y no me gustó", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "DISLIKE", Toast.LENGTH_SHORT).show();
                 setRecommendationResult(curIndex, RecomendationResult.WATCHED_DISLIKED);
                 nextMovie(curIndex);
             }
@@ -94,7 +99,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 
         likeButton.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "Vista y me gustó", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "LIKE", Toast.LENGTH_SHORT).show();
                 setRecommendationResult(curIndex, RecomendationResult.WATCHED_LIKED);
                 nextMovie(curIndex);
             }
@@ -102,7 +107,7 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 
         dontknow.setOnClickListener(new View.OnClickListener(){
             @Override public void onClick(View v){
-                Toast.makeText(context, "No lo se...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "DON'T KNOW", Toast.LENGTH_SHORT).show();
                 nextMovie(curIndex);
             }
         });
@@ -111,6 +116,10 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 
 
         RequestManager.getInstance().getTestRecomendations(TestActivity.this);
+//        ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
+//        progressDialog.setTitle("Loading");
+//        progressDialog.setMessage("Obtaining films, please wait...");
+//        progressDialog.show();
     }
 
     private void getData() {
@@ -133,37 +142,47 @@ public class TestActivity extends AppCompatActivity implements RequestCallback{
 //        }
 
         recommendations = RequestManager.getInstance().getMovieRecommendations();
-
         CardAdapter cardAdapter = new CardAdapter(recommendations, this);
         swipeCardsView.setAdapter(cardAdapter);
 
     }
 
-    public void acceptMovie(int index){
-        Toast.makeText(context, "ACEPTADA", Toast.LENGTH_SHORT).show();
-        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (ACEPTADA)
-        setRecommendationResult(index, RecomendationResult.ACCEPTED);
-        Intent intent = new Intent(TestActivity.this, ResultActivity.class);
-        intent.putExtra("poster", recommendations.get(index).getMovieDTO().getPoster());
-        intent.putExtra("title", recommendations.get(index).getMovieDTO().getTitle());
-        startActivity(intent);
+    public void likeMovie(int index){
+        Toast.makeText(context, "LIKE", Toast.LENGTH_SHORT).show();
+        setRecommendationResult(index, RecomendationResult.WATCHED_LIKED);
     }
 
-    public void rejectMovie(int index){
-        Toast.makeText(context, "RECHAZADA", Toast.LENGTH_SHORT).show();
-        //PUT A BACKEND CAMBIANDO EL ESTADO DE LA MOVIERECOMENDATION (RECHAZADA)
-        setRecommendationResult(index, RecomendationResult.REJECTED);
+    public void dislikeMovie(int index){
+        Toast.makeText(context, "DISLIKE", Toast.LENGTH_SHORT).show();
+        setRecommendationResult(index, RecomendationResult.WATCHED_DISLIKED);
     }
 
     public void nextMovie(int index){
         index++;
+//        ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
+//        progressDialog.setTitle("Updating");
+//        progressDialog.setMessage("Updating preferences, please wait...");
+//        progressDialog.show();
         swipeCardsView.notifyDatasetChanged(index);
+    }
+
+    private void isLast(int index){
+        if (index == 9){
+            ProgressDialog progressDialog = new ProgressDialog(TestActivity.this);
+            progressDialog.setTitle("Updating");
+            progressDialog.setMessage("Updating preferences, please wait...");
+            progressDialog.show();
+            Intent intent = new Intent(TestActivity.this, RequestActivity.class);
+            intent.putExtra("latlon", coord);
+            startActivity(intent);
+        }
     }
 
     public void setRecommendationResult(int index, RecomendationResult result){
         MovieRecommendation recommendation = recommendations.get(index);
         recommendation.setRecomendationResult(result);
         RequestManager.getInstance().updateRecomendation(this, recommendation);
+        isLast(index);
     }
 
     @Override
