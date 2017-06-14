@@ -6,15 +6,22 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dam.serflix.Controller.Managers.RegisterCallback;
@@ -25,11 +32,14 @@ import com.example.dam.serflix.Model.UserDTO;
 import com.example.dam.serflix.Model.UserToken;
 import com.example.dam.serflix.R;
 
+import static com.huxq17.swipecardsview.R.id.text;
+
 public class SignUpActivity extends AppCompatActivity implements RegisterCallback, LoginCallback {
 
     private EditText username;
     private EditText mail;
     private EditText pass;
+    private String passC;
     private EditText pass2;
     private UserDTO userDTO;
     private String coord;
@@ -44,9 +54,92 @@ public class SignUpActivity extends AppCompatActivity implements RegisterCallbac
         pass = (EditText) findViewById(R.id.editPass);
         pass2 = (EditText) findViewById(R.id.editRPass);
 
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String aux = s.toString();
+                if(aux.length()<8){
+                    username.setError("El nombre es muy corto");
+                }
+            }
+        });
+
+        mail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String aux = s.toString();
+                if(!Patterns.EMAIL_ADDRESS.matcher(aux).matches()){
+                    mail.setError("Mail incorrecto.");
+                }
+            }
+        });
+
+
+        pass.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String aux = s.toString();
+                passC = aux;
+                if(aux.length()<8){
+                    pass.setError("La contraseña es muy corta");
+                }
+            }
+        });
+
+        pass2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String aux = s.toString();
+                if(!aux.equals(passC)){
+                    pass2.setError("La contraseña no coincide");
+                }
+            }
+        });
+
         Bundle extras = getIntent().getExtras();
         final String latlon = extras.getString("latlon");
         coord = latlon;
+
 
         Button registerButton = (Button) findViewById(R.id.signBtn);
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +148,21 @@ public class SignUpActivity extends AppCompatActivity implements RegisterCallbac
                 attemptRegister(view);
             }
         });
+
+        pass2.setImeActionLabel("Pass?", KeyEvent.KEYCODE_ENTER);
+/*        pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == EditorInfo.IME_NULL || (keyEvent != null && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (id == EditorInfo.IME_ACTION_DONE)) {
+                    attemptRegister(textView);
+                    return true;
+                }
+                return false;
+            }
+        });
+*/
+
+
     }
 
     private void attemptRegister(View v){
